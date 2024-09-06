@@ -1,0 +1,98 @@
+<apex:page renderAs="pdf" controller="PdfGenerationProjectIntendedOutcome">
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>PAS2019 Project Intended Outcomes</title>
+</head>
+<body style="font-family: Arial, sans-serif;">
+    <div style="">
+        <!-- Header Section -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;color: dark teal;text-align='center'">PAS2019 PROJECT INTENDED OUTCOMES</div>
+            <div style="margin-left:">
+                <p><strong>Date:</strong> {!Designwork2.Date__c}</p>
+                <p><strong>Address:</strong> {!Address}</p>
+                <p><strong>Project reference:</strong> {!Designwork2.Project_Reference__c}</p>
+            </div>
+        </div>
+        
+        <!-- Project Details -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Project Details</div>
+            <div style="margin-left:">
+                <p><strong>Project reference:</strong>{!Designwork2.Project_Reference__c}</p>
+                <p><strong>Company name:</strong>{!Designwork2.Survey__r.company_Name__c}</p>
+                <p><strong>Number of dwellings:</strong>1</p>
+                <p><strong>Number of improvements:</strong>-</p>
+                <p><strong>Overall risk grade:</strong>-</p>
+            </div>
+        </div>
+
+        <!-- Retrofit Roles -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Retrofit Roles</div>
+            <div style="margin-left:">
+                <p><strong>Co-ordinator:</strong>{!Designwork2.Survey__r.Assigned_Coordinator__c}</p>
+                <p><strong>Advisor:</strong>-</p>
+                <p><strong>Assessor:</strong>-</p>
+                <p><strong>Designer:</strong>-</p>
+                <p><strong>Evaluator:</strong>-</p>
+            </div>
+        </div>
+
+        <!-- Dwelling Details -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Dwelling Details</div>
+            <div style="margin-left:">
+                <p><strong>Dwelling type:</strong>{!Designwork2.Survey__r.House_Type__c}</p>
+                <p><strong>Conservation area:</strong>-</p>
+                <p><strong>World heritage site:</strong>{!Designwork2.Survey__r.Is_Listed__c}</p>
+                <p><strong>Special architecture or historic interest:</strong>-</p>
+                <p><strong>Tenure:</strong>{!Designwork2.Survey__r.Tenure_Type__c}</p>
+            </div>
+        </div>
+        
+        <!-- Intended Outcomes -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Intended Outcomes</div>
+            <div style="margin-left:">
+                <p>At the outset of this project, the intended outcomes have been agreed and recorded with the client. These intended outcomes shall take into account the initial condition of the building(s) and be expressed in terms of one or more of the following:</p>
+             
+                <p>The below table shows the intended outcomes followed by how the outcomes will be evaluated.</p>
+
+                <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li>
+                        <p>
+                            <strong>Reductions in energy use:</strong> 
+                            <span>{!IF(Designwork2.IO_Reductions_in_energy_use__c, 'Yes', 'No')}</span> - {!Designwork2.IO_Reductions_in_energy_use_Action__c}
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Improvement in internal comfort:</strong> 
+                            <span>{!IF(Designwork2.IO_Improvement_in_internal_comfort__c, 'Yes', 'No')}</span> - {!Designwork2.IO_Improvement_in_internal_comfortAction__c}
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Customer Notes -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Customer Notes</div>
+            <div style="margin-left:">
+                <p>{!Designwork2.IO_Notes_from_the_customer__c}</p>
+            </div>
+        </div>
+
+        <!-- Advisory Notes -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Advisory Notes</div>
+            <div style="margin-left:">
+                <p>{!Designwork2.IO_Advisory_notes__c}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+</apex:page>

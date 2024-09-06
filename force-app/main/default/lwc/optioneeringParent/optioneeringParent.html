@@ -1,0 +1,8 @@
+<template>
+    <template if:true={showOptioneering}>
+        <c-optioneering onshowimprovementoptions={handleShowImprovementOptions}></c-optioneering>
+    </template>
+    <template if:true={showImprovementOptions}>
+        <c-improvement-options onhideimprovementoptions={handleHideImprovementOptions}></c-improvement-options>
+    </template>
+</template>

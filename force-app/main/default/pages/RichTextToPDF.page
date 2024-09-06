@@ -1,0 +1,8 @@
+<apex:page controller="RichTextPDFController" contenttype="application/pdf">
+    <html>
+        <body>
+            <!-- Render the content as HTML -->
+            <apex:outputText value="{!content}" escape="false"/>
+        </body>
+    </html>
+</apex:page>

@@ -1,0 +1,7 @@
+<apex:page controller="PdfGenerationImprovementOption">
+    <apex:form >
+        <apex:commandButton value="Click to generate Improvement Evaluation Option pdf" action="{!generatePDFAndSave}">
+            <apex:param name="DesignworkId" value="{!$CurrentPage.parameters.id}" assignTo="{!Designwork.Id}"/>
+        </apex:commandButton>
+    </apex:form>
+</apex:page>

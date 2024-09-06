@@ -1,0 +1,7 @@
+<apex:page controller="Generate_Pdf_V4">
+    <apex:form >
+        <apex:commandButton value="Generate and Save PDF" action="{!generatePDFAndSave}">
+            <apex:param name="leadId" value="{!$CurrentPage.parameters.id}" assignTo="{!lead.Id}"/>
+        </apex:commandButton>
+    </apex:form>
+</apex:page>

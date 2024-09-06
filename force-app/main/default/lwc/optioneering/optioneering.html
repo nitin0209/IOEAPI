@@ -1,0 +1,60 @@
+<template>
+    <lightning-card title="Latest IOE Response">
+        <div class="slds-p-around_medium">
+            <lightning-button label="Fetch Latest Response" onclick={handleFetch} variant="brand"></lightning-button>
+            <lightning-button label="Make HTTP Post Request" onclick={handleMakeHttpPostRequest} variant="brand"></lightning-button>
+            <!-- <template if:true={responseBody}>
+                <p>{responseBody}</p>
+            </template> -->
+        </div>
+    </lightning-card>
+
+    <lightning-card title="Improvement Optioneering" class="card-container">
+        <div class="slds-box slds-theme_default">
+            <lightning-input
+                label="Current total delivered energy (kWh/yr)"
+                value={totalDeliveredEnergy}
+                placeholder="Please enter a value"
+                class="input-field"
+                readonly
+            ></lightning-input>
+
+            <lightning-input
+                label="Current total fuel costs (£/yr)"
+                value={totalFuelCosts}
+                placeholder="Please enter a value"
+                class="input-field"
+                readonly
+            ></lightning-input>
+
+            <lightning-input
+                label="Current CO2 emissions (CO2kg/yr)"
+                value={co2Emissions}
+                placeholder="Please enter a value"
+                class="input-field"
+                readonly
+            ></lightning-input>
+
+            <lightning-input
+                label="Current Energy Rating"
+                value={eiRating}
+                placeholder="Please enter a value"
+                class="input-field"
+                readonly
+            ></lightning-input>
+
+            <lightning-input
+                label="Current space heating demand (kWh/m2/year)"
+                value={spaceHeatingDemand}
+                placeholder="Please enter a value"
+                class="input-field"
+                readonly
+            ></lightning-input>
+        </div>
+
+        <div onclick={handleOptioneeringClick} style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border: 1px solid #d8dde6; border-radius: 5px; margin-top: 20px; cursor: pointer;">
+            <span>Optioneering</span>
+            <lightning-icon icon-name="utility:chevronright" size="small" alternative-text="Right Arrow"></lightning-icon>
+        </div>
+    </lightning-card>
+</template>

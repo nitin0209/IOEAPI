@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Documents" icon-name="standard:file">
+        <template if:true={files}>
+            <template for:each={files} for:item="file">
+                <div key={file.Id} class="file-container">
+                    <p>{file.Name}</p>
+                    <p>{file.Description}</p>
+                    <p>{file.FileType}</p>
+                    <lightning-button label="View File" data-file-id={file.Id} onclick={handleViewFile}></lightning-button>
+                </div>
+            </template>
+        </template>
+        <template if:true={error}>
+            <p>Error retrieving files: {error}</p>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,70 @@
+<template>
+    <lightning-card class="card-container">
+        <!-- Header Section -->
+<div class="slds-box slds-theme_default slds-p-around_medium slds-grid slds-wrap slds-gutters ">
+    <div class="slds-col slds-size_8-of-12">
+        <div class="slds-text-heading_medium ">Loft Insulation (between and over ceiling joists)</div>
+ <div class="slds-p-top_x-small" style="display: flex; align-items: center;">
+    <lightning-input type="checkbox" label="Add to medium term plan" style="margin-right: 20px;"></lightning-input>
+    <lightning-input type="checkbox" label="Mark for installation" style="margin-right: 20px;"></lightning-input>
+    <lightning-input type="checkbox" label="Add to package"></lightning-input>
+    <lightning-icon icon-name="utility:chevrondown" size="small" alternative-text="Down Arrow"></lightning-icon>
+</div>
+
+
+    </div>
+    <!-- <div class="slds-col slds-size_4-of-12 slds-text-align_right">
+        <div style="display: flex; align-items: center; justify-content: flex-end;">
+            <lightning-input type="checkbox" label="Add to package" style="margin-right: 10px;"></lightning-input>
+            <lightning-icon icon-name="utility:chevrondown" size="small" alternative-text="Down Arrow"></lightning-icon>
+        </div>
+    </div> -->
+</div>
+
+
+
+
+
+        <!-- Form Section -->
+        <div class="slds-box slds-theme_default slds-p-around_medium">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="SAP rating" placeholder="Please enter a value"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="Installation cost" value="0"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="Capital cost £" value="0"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="Lifetime" placeholder="Please enter a value"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="kWh/yr" placeholder="Please enter a value"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="£/yr" placeholder="Please enter a value"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="CO2 kg/yr" placeholder="Please enter a value"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="Annual fuel savings" value="0.00"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="Simple payback" value="0.00"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="Lifetime fuel savings" value="0.00"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="Lifetime CO2 savings" value="0.00"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input label="Carbon score effect" value="0.00"></lightning-input>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

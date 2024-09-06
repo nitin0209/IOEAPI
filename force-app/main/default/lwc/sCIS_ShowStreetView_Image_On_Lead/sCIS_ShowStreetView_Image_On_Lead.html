@@ -1,0 +1,8 @@
+<template>
+    <div class="container">
+        <div class="map">
+            <img if:true={streetViewImageUrl} src={streetViewImageUrl} alt="Google Street View">
+            <p if:false={streetViewImageUrl}>Street View Image Not Available</p>
+        </div>
+    </div>
+</template>

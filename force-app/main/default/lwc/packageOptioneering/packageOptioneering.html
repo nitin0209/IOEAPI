@@ -1,0 +1,27 @@
+<template>
+    <lightning-card class="card-container">
+        <!-- Custom title with down arrow aligned to the far right, styled similarly to the Optioneering example -->
+        <div slot="title" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 10px; cursor: pointer; border-bottom: 1px solid #d8dde6;">
+            <!-- <span style="color: #0070d2; font-weight: bold;">Packages</span> -->
+            <span>Packages</span>
+            <lightning-icon icon-name="utility:chevrondown" size="small" alternative-text="Down Arrow"></lightning-icon>
+        </div>
+
+        <div class="slds-box slds-theme_default">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <!-- Package Name and Description -->
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-text-heading_small slds-text-color_default">Package 1</div>
+                    <div class="slds-text-body_small">Loft Insulation (between and over ceiling joists)</div>
+                </div>
+
+                <!-- Select and Remove Buttons -->
+                <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+    <lightning-button label="Select package" variant="brand" class="select-package-button" style="margin-right: 10px;"></lightning-button>
+    <lightning-button label="Remove package" variant="destructive" class="remove-package-button"></lightning-button>
+</div>
+
+            </div>
+        </div>
+    </lightning-card>
+</template>

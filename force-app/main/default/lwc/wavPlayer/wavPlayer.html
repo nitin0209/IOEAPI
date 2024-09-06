@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="WAV Player" if:true={wavFileUrl}>
+        <audio controls>
+            <source src={wavFileUrl} type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </lightning-card>
+    <template if:true={error}>
+        <p>{error}</p>
+    </template>
+</template>

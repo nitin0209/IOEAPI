@@ -1,0 +1,12 @@
+<template>
+    <lightning-button label="Generate PDF" onclick={handleGeneratePDF} class="slds-m-around_medium"></lightning-button>
+    <template if:true={showToast}>
+        <lightning-toast
+            title={toastTitle}
+            message={toastMessage}
+            variant={toastVariant}
+            onclose={handleToastClose}
+            class="slds-m-top_small">
+        </lightning-toast>
+    </template>
+</template>

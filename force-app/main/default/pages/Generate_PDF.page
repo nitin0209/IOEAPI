@@ -1,0 +1,27 @@
+<apex:page renderAs="pdf" controller="Generate_Pdf_V4">
+    <apex:pageBlock title="Lead Details">
+        <apex:pageBlockSection >
+            <apex:outputField value="{!lead.Name}" label="Name"/>
+            <apex:outputField value="{!lead.Company}" label="Company"/>
+            <apex:outputField value="{!lead.Email}" label="Email"/>
+            <apex:outputField value="{!lead.Phone}" label="Phone"/>
+            <apex:outputField value="{!lead.Status}" label="Status"/>
+            <apex:outputField value="{!lead.Website}" label="Website"/>
+            <apex:outputField value="{!lead.Declined_By__c}" label="Declined By"/>
+            <apex:outputField value="{!lead.Who_is_on_Benefit__c}" label="Who is on Benefit"/>
+            <apex:outputField value="{!lead.current_energy_rating__c}" label="Current Energy Rating"/>
+            <apex:outputField value="{!lead.potential_energy_rating__c}" label="Potential Energy Rating"/>
+            <apex:outputField value="{!lead.Type_of_heating__c}" label="Type of Heating"/>
+            <apex:outputField value="{!lead.assigned_Lead_Assistant__c}" label="Assigned Lead Assistant"/>
+            <apex:outputField value="{!lead.Date_Of_Birth__c}" label="Date of Birth"/>
+            <apex:outputField value="{!lead.do_you_know_how_old_the_insulation_is__c}" label="Do you know how old the insulation is"/>
+            <apex:outputField value="{!lead.Do_you_know_if_there_is_wall_insulation__c}" label="Do you know if there is wall insulation"/>
+            <apex:outputField value="{!lead.Does_property_work_require_a_contractor__c}" label="Does property work require a contractor"/>
+            <apex:outputField value="{!lead.Prep_Work__c}" label="Prep Work"/>
+            <apex:outputField value="{!lead.Dwelling_Type__c}" label="Dwelling Type"/>
+            <apex:outputField value="{!lead.EPC_Data__c}" label="EPC Data"/>
+            <apex:outputField value="{!lead.other_gas_supplier__c}" label="Other Gas Supplier"/>
+            <apex:outputField value="{!lead.other_electricity_suppliers__c}" label="Other Electricity Suppliers"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

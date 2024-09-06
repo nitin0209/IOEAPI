@@ -1,0 +1,9 @@
+/* postcodeLeadGenerator.css */
+
+.slds-icon-text-default {
+    --slds-c-icon-color-foreground: #ffffff; 
+}
+
+.label {
+    margin-right: 10px; /* Adjust the margin as needed */
+}

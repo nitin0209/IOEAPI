@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="Assign Van to Installer">
+        <div class="slds-m-around_medium">
+            <lightning-combobox
+                name="van"
+                label="Select Van"
+                placeholder="Select a Van"
+                options={availableVans}
+                onchange={handleVanChange}
+                data-id="van"
+                required>
+            </lightning-combobox>
+
+            <lightning-combobox
+                name="installer"
+                label="Select Installer"
+                placeholder="Select an Installer"
+                options={availableInstallers}
+                onchange={handleInstallerChange}
+                data-id="installer"
+                required>
+            </lightning-combobox>
+
+            <lightning-button
+                label="Assign Van"
+                onclick={handleAssignVan}
+                class="slds-m-top_medium">
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>

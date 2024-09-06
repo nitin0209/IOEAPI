@@ -1,0 +1,56 @@
+<template>
+    <lightning-card title="Optioneering">
+        <!-- Title Section with Down Arrow Icon -->
+        <div slot="title" class="slds-p-horizontal_small">
+            <span>Optioneering</span>
+            <lightning-icon icon-name="utility:chevrondown" size="small" alternative-text="Down Arrow"></lightning-icon>
+        </div>
+
+        <!-- Search and Create Package Section -->
+        <div class="slds-p-horizontal_small">
+            <div style="margin-bottom: 15px;">
+                <lightning-input 
+                    label="Search for improvement"
+                    placeholder="Search for improvements">
+                </lightning-input>
+            </div>
+            <div>
+                <lightning-button 
+                    label="Create package" 
+                    variant="brand">
+                </lightning-button>
+            </div>
+        </div>
+
+        <!-- Improvement Options List -->
+        <div class="slds-p-horizontal_small">
+            <template for:each={improvementOptions} for:item="option">
+                <div key={option.id} class="improvement-item" style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="improvement-title" style="flex: 1; font-weight: normal; color: black;"> <!-- Set font-weight to normal and color to black -->
+                        {option.name}
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <lightning-input 
+                            type="checkbox" 
+                            label="Add to medium term plan">
+                        </lightning-input>
+                        <lightning-input 
+                            type="checkbox" 
+                            label="Mark for installation">
+                        </lightning-input>
+                        <lightning-input 
+                            type="checkbox" 
+                            label="Add to package">
+                        </lightning-input>
+                        <lightning-icon icon-name="utility:chevronright" size="small" alternative-text="Right Arrow" onclick={handlePackageAction}></lightning-icon>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- Hide button to go back to Optioneering -->
+        <div style="text-align: right; padding: 10px;">
+            <lightning-button label="Back to Optioneering" onclick={handleHideClick} variant="neutral"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

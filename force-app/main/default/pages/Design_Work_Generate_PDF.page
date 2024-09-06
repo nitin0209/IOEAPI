@@ -1,0 +1,223 @@
+<apex:page renderAs="pdf" controller="PdfGenerationForDesingWork">
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ventilation Assessment</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px;">
+    <div style="text-align='center'">
+        <!-- Header Section -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold; color:dark teal;text-align='center';">VENTILATION ASSESSMENT</div>
+            <div style="margin-left:">
+                <p><strong>Date:</strong> {!Designwork.Date__c}</p>
+                <p><strong>Address:</strong>{!Address}</p>
+                <p><strong>Project reference:</strong>{!Designwork.Project_Reference__c}</p>
+            </div>
+        </div>
+
+        <!-- Assessment of existing ventilation -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Assessment of existing ventilation</div>
+            <div style="margin-left:">
+                <p><strong>Is there evidence of condensation and/or mould growth in the dwelling?</strong> {!Designwork.EV_Is_the_damp_or_mold_present__c} <br/>{!Designwork.EV_Action_Required_for_damp__c} </p>
+                <p><strong>Is there a ventilation system (both intake and extract, either passive or active)?</strong> {!Designwork.EV_Do_you_have_ventilation_installed__c}<br/>{!Designwork.EV_Action_Required_for_ventilation__c}</p>
+                <p><strong>Are there undercuts of at least 7600mm² beneath all internal doors?</strong> {!Designwork.EV_Is_there_sufficient_undercut__c}<br/>{!Designwork.EV_Action_required_for_undercut__c}</p>
+                <p><strong>Is there a provision for purge ventilation in every habitable room (i.e. an openable window)?</strong> {!Designwork.EV_Is_window_open_for_purge_ventilation__c}<br/>{!Designwork.EV_Action_required_for_purge__c}</p>
+            </div>
+        </div>
+
+        <!-- Retrofit ventilation upgrades / Overall ventilation strategy -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Retrofit ventilation upgrades / Overall ventilation strategy</div>
+            <div style="margin-left:">
+                <p><strong></strong>{!Ventilation}</p>
+                <p style="font-size: 0.9em; color:#1c5fb8;">Please note: Purge ventilation on its own does not constitute a ventilation system.</p>
+            </div>
+        </div>
+
+        <!-- Outline specification – dMEV (Decentralised mechanical extract ventilation) -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Outline specification – dMEV (Decentralised mechanical extract ventilation)</div>
+            <div style="margin-left:">
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
+                    <tr>
+                        <th style="border: 1px solid black; padding: 4.5px;">Gross internal area of the property</th>
+                        <td style="border: 1px solid black; padding: 4.5px;">{!Designwork.dMEV_Gross_internal_area_of_the_property__c}</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Number of single bedrooms</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.dMEV_Number_of_single_bedrooms__c}</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Number of double bedrooms</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.dMEV_Number_of_double_bedrooms__c}</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Gross internal area flow result (litres per second)</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.dMEV_Gross_internal_area_flow_result__c}</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Bedrooms flow result (litres per second)</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.dMEV_Bedrooms_flow_result_litres__c}</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Whole dwelling ventilation rate (litres per second)</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.dMEV_Whole_dwelling_ventilation_rate__c}</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Minimum extract ventilation rate (litres per second)</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.dMEV_Minimum_extract_ventilation_rate__c}</td>
+                    </tr>
+                </table>
+                <br></br><br></br><br></br>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Room</th>
+                        <th style="border: 1px solid black; padding: 6px;">{!highRate}</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; padding: 6px;">Kitchen</td>
+                        <td style="border: 1px solid black; padding: 6px;">{!highRate}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; padding: 6px;">Bathroom</td>
+                        <td style="border: 1px solid black; padding: 6px;">-</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Outline specification – IEV (Intermittent extract ventilation for buildings up to 4 storeys) -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Outline specification – IEV (Intermittent extract ventilation for buildings up to 4 storeys)</div>
+            <div style="margin-left:">
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px; border: 1px solid black;">
+                    <tr>
+                        <th style="border: 1px solid black; padding: 4.5px;">Gross internal area of the property</th>
+                        <td style="border: 1px solid black; padding: 4.5px;">{!Designwork.IEV_Gross_Internal_Area__c}</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Number of bedrooms</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.IEV_Number_of_Bedrooms__c}</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Number of habitable rooms</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.IEV_Number_of_Habitable_Rooms__c} mm²</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 5px;">Number of wet rooms</th>
+                        <td style="border: 1px solid black; padding: 5px;">{!Designwork.IEV_Number_of_Wet_Rooms__c} mm²</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;"> Total required ventilator area for floor areas up to</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.IEV_Ventilator_Area_for_floor_upto_100__c} mm²</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;"> Additional required ventilation area for floor areas</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.IEV_Ventilator_Area_for_floor_over_100__c} mm²</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Total required ventilator area</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.IEV_Total_Required_Ventilator_Area__c} mm²</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid black; padding: 6px;">Excess ventilator area to be distributed between</th>
+                        <td style="border: 1px solid black; padding: 6px;">{!Designwork.IEV_Excess_area_between_large_room__c} mm²</td>
+                    </tr>
+                </table>
+                  <br></br><br></br>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px; border: 1px solid black;">
+                    <tr style="border: 1px solid black; background-color: #004650; padding: 10px;color:white;">
+                        <th style="border: 1px solid black; background-color: #004650:color:white; padding: 10px;">Room</th>
+                        <th style="border: 1px solid black; background-color: #004650:color:white; padding: 10px;">Number of rooms</th>
+                        <th style="border: 1px solid black; background-color: #004650:color:white; padding: 10px;">Habitable rooms</th>
+                        <th style="border: 1px solid black; background-color: #004650:color:white; padding: 10px;">Required extract rate (litres/s)</th>
+                        <th style="border: 1px solid black; background-color: #004650:color:white; padding: 10px;">Minimum equivalent area of background ventilators (mm²)</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Kitchen Cooker Hood Extracts To Outside</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Bathroom</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Bedrooms</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Designwork.IEV_Number_of_Bedrooms__c}</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Lounge/Dining</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                    </tr>
+                </table>
+            </div>
+             </div>
+
+        <!-- Retrofit Co-ordinator declarations -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="page-break-inside: avoid;">
+                <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Retrofit Co-ordinator declarations</div>
+                <div>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
+                        <tr>
+                            <th style="border: 1px solid black; padding: 10px;">I confirm I accept the evidence provided by the Retrofit Assessor</th>
+                            <td style="border: 1px solid black; padding: 10px;">{!Designwork.D_I_accept_the_evidence__c} </td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 10px;">I confirm that the ventilation fan has a maximum noise level 30 dBLAeq,T for IEV or 30dBLAeq,T for background mode for continuous systems</th>
+                            <td style="border: 1px solid black; padding: 10px;">{!Designwork.D_Confirm_ventilation_max_noise_level_30__c}</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 10px;">I confirm that ventilation system sized to provide a whole-dwelling background ventilation rate equivalent to at least the 'Minimum low rate' of whole-dwelling ventilation specified in Approved Document F, assuming occupancy equal to the number of bed spaces in the dwelling</th>
+                            <td style="border: 1px solid black; padding: 10px;">{!Designwork.D_Confirm_that_ventilation_system_sized__c}</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 10px;">I confirm that ventilation all fans specified as part of any of the ventilation systems described shall be an energy efficient model compliant with ECO Design Commission Regulations (EU) 1253/2014</th>
+                            <td style="border: 1px solid black; padding: 10px;">{!Designwork.D_Confirm_ventilation_all_fans__c}</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 10px;">I confirm that ventilation system design includes calculations provided by a technical consultant, specialist designer or the supplier of the system, to demonstrate the whole-dwelling ventilation rates are provided by the equipment proposed</th>
+                            <td style="border: 1px solid black; padding: 10px;">{!Designwork.D_Confirm_design_includes_calculations__c}</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 10px;">I confirm that ventilation system was installed by operatives holding suitable qualifications identified in the Register of Regulated Qualifications maintained by Ofqual for England (and by its equivalents for the devolved nations) and approved by the manufacturer or supplier of the system</th>
+                            <td style="border: 1px solid black; padding: 10px;">{!Designwork.D_Confirm_that_ventilation_system_instle__c}</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 10px;">In the case the ventilation is inadequate but no action is required: Confirm that you have delivered the recommendation to the client the ventilation is inadequate and should be upgraded</th>
+                            <td style="border: 1px solid black; padding: 10px;"> {!Designwork.D_requirements_for_combustion_appliances__c}</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 10px;">The supply air requirements for combustion appliances (Boiler, wood stove, fireplace, gas fire etc) are met, Part J of Building Regs, (Section 2, 3 and 4)</th>
+                            <td style="border: 1px solid black; padding: 10px;">{!Designwork.D_Confirm_ventilation_all_fans__c}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional advisory notes -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.3em; margin-bottom: 10px; font-weight: bold;">Additional advisory notes</div>
+            <div style="margin-left:">
+                <p>{!Designwork.dMEV_Advice_on_background_ventilation__c}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+</apex:page>

@@ -1,0 +1,52 @@
+.card-container {
+    padding: 20px;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.search-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.search-input {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.create-package-button {
+    flex-shrink: 0;
+}
+
+.improvement-list {
+    margin-top: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.improvement-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+.improvement-title {
+    font-weight: bold;
+    padding-right: 20px;
+    color: #0070d2;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.checkbox-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px; /* Space between the checkboxes */
+}

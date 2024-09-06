@@ -1,0 +1,108 @@
+<template>
+    <lightning-card title="Manage Van Assignments">
+        <!-- Assigned Vans Section -->
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-card title="Assigned Vans">
+                    <div class="slds-m-around_medium">
+                        <template if:true={assignedVans.length}>
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th scope="col">
+                                            <div class="slds-truncate">Van Name</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate">License Plate</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate">Assigned Installer</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate">Status</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate">Actions</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={assignedVans} for:item="van">
+                                        <tr key={van.Id}>
+                                            <td>
+                                                <div class="slds-truncate">{van.Van__r.Name}</div>
+                                            </td>
+                                            <td>
+                                                <div class="slds-truncate">{van.Van__r.License_Plate__c}</div>
+                                            </td>
+                                            <td>
+                                                <div class="slds-truncate">{van.Installer__r.Name}</div>
+                                            </td>
+                                            <td>
+                                                <div class="slds-truncate">{van.Status__c}</div>
+                                            </td>
+                                            <td>
+                                                <lightning-button label="Remove"
+                                                    data-id={van.Id}
+                                                    onclick={handleRemoveAssignment}
+                                                    variant="destructive"
+                                                    class="slds-m-left_x-small">
+                                                </lightning-button>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+                        <template if:false={assignedVans.length}>
+                            <p>No assigned vans found.</p>
+                        </template>
+                    </div>
+                </lightning-card>
+            </lightning-layout-item>
+
+            <!-- Unassigned Vans Section -->
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-card title="Unassigned Vans">
+                    <div class="slds-m-around_medium">
+                        <template if:true={unassignedVans.length}>
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th scope="col">
+                                            <div class="slds-truncate">Van Name</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate">License Plate</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate">Status</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={unassignedVans} for:item="van">
+                                        <tr key={van.Id}>
+                                            <td>
+                                                <div class="slds-truncate">{van.Name}</div>
+                                            </td>
+                                            <td>
+                                                <div class="slds-truncate">{van.License_Plate__c}</div>
+                                            </td>
+                                            <td>
+                                                <div class="slds-truncate">{van.Status__c}</div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+                        <template if:false={unassignedVans.length}>
+                            <p>No unassigned vans found.</p>
+                        </template>
+                    </div>
+                </lightning-card>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

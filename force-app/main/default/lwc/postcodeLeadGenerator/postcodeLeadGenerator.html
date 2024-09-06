@@ -1,0 +1,123 @@
+<template>
+<lightning-card title="Lead Generator Assignment">
+			<div class="">
+				<label for="datePicker" style="margin-right: 10px;">Select Date: </label>
+				<input type="date" id="datePicker" value={selectedDate} oninput={handleDateChange} style="margin-right: 10px;" />
+				<input type="text" placeholder="Enter pincode" onchange={handlePincode} />
+				<!-- Display error message below the date picker -->
+				<div if:true={error} class="slds-text-color_error">{error}</div>
+			</div>
+	<!-- slds-p-around_medium -->
+	<div style="margin-top: 10px;"></div>
+			<!-- Assigned Lead Generators Section -->
+			<template if:true={assignedLeadGenerators}>
+				<div class=""> 
+					<h2>Assigned Lead Generators</h2>
+					<lightning-combobox
+						name="assignedLeadGenerator"
+						label="Select Assigned Lead Generator to Reassign Postcode"
+						value={selectedLeadGeneratorForReassign}
+						options={assignedLeadGenerators}
+						onchange={handleLeadGeneratorChangeForReassign}>
+					</lightning-combobox>
+				</div>
+			</template>
+
+		<br>
+			<div class="">
+				<!-- user login details id -->
+				<!-- <h1>{selectedLeadGeneratorForReassign}</h1> -->
+				<lightning-button label="Reassign"  onclick={handleReassign} ></lightning-button>
+			</div>
+			<div style="margin-top: 10px;"></div>
+			<!-- Not Assigned Lead Generators Section -->
+			<template if:true={notAssignedLeadGenerators}>
+				<div class="">  
+					<h2>Not Assigned Lead Generators</h2>
+					<lightning-combobox
+						name="notAssignedLeadGenerator"
+						label="Select Lead Generator to Assign Postcode"
+						value={selectedLeadGeneratorForAssign}
+						options={notAssignedLeadGenerators}
+						onchange={handleLeadGeneratorChangeForAssign}>
+					</lightning-combobox>
+				</div>
+			</template>
+			<br>
+			<!-- commented code for datepicked code -->
+			<!-- <template if:true={error}>
+				<p class="slds-text-color_error">{error}</p>
+			</template> -->
+			<template if:true={loading}>
+				<p>Loading lead generators...</p>
+			</template>
+			<div class="">
+				<lightning-button label="Assign"  onclick={handleAssign} ></lightning-button>
+			</div>
+			
+
+			<!-- Reassignment Popup section -->
+			<template if:true={showReAssignmentpopUp}>
+				<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+					<div class="slds-modal__container">
+						<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closePopup}>
+							<lightning-icon
+		icon-name="utility:close"
+		size="small"
+		alternative-text="Indicates close"
+	>
+	</lightning-icon>
+						</button>
+						<div class="slds-modal__header">
+							<h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Lead Generator already assigned to Leads.</h1>
+						</div>
+						<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+							<p>Do you want to reassign{Name} to {pincode}?</p>
+						</div>
+						<div class="slds-modal__footer">
+							<button class="slds-button slds-button_neutral" aria-label="Yes" onclick={handleReassignYes}>Yes</button>
+							<button class="slds-button slds-button_neutral" aria-label="No" onclick={handleReassignNo}>No</button>
+						</div>  
+					</div>
+				</section>
+				<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+			</template>
+
+			<!-- Assignment Popup section -->
+			<template if:true={showAssignmentpopUp}>
+				<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-02" class="slds-modal slds-fade-in-open">
+					<div class="slds-modal__container">
+						<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closePopup}>
+							<lightning-icon
+		icon-name="utility:close"
+		size="small"
+		alternative-text="Indicates close"
+	>
+	</lightning-icon>
+							<span class="slds-assistive-text">Cancel and close</span>
+						</button>
+						<div class="slds-modal__header">
+							<h1 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Assign Postcode to Lead Generator</h1>
+						</div>
+						<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+							<p>Do you want to assign a postcode to the selected Lead Generator?</p>
+							<div class="slds-form slds-form_stacked">
+				<lightning-input type="date" label="Select Date" value={selectedDate} onchange={handleDateChange}></lightning-input>
+				<!-- <lightning-input label="Lead Generator Name" value={leadGeneratorName} onchange={handleLeadGeneratorNameChange}></lightning-input>
+				<lightning-input label="New Postcode" value={newPostcode} onchange={handleNewPostcodeChange}></lightning-input> -->
+				<lightning-input type="time" label="Start Time" value={startTime} onchange={handleStartTimeChange}></lightning-input>
+				<lightning-input type="time" label="End Time" value={endTime} onchange={handleEndTimeChange}></lightning-input>
+			
+				</div>
+						</div>
+						<div class="slds-modal__footer">
+							<button class="slds-button slds-button_neutral" aria-label="Yes" onclick={handleAssignYes}>Yes</button>
+							<button class="slds-button slds-button_neutral" aria-label="No" onclick={handleAssignNo}>No</button>
+						</div>  
+					</div>
+				</section>
+				<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+			</template>
+			
+		</lightning-card>
+	</template>

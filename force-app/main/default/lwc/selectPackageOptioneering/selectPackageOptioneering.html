@@ -1,0 +1,50 @@
+<template>
+    <lightning-card class="card-container">
+        <!-- Custom title with down arrow aligned to the right -->
+        <div slot="title" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; cursor: pointer; border-bottom: 1px solid #d8dde6;">
+            <span>Packages</span>
+            <lightning-icon icon-name="utility:chevrondown" size="small" alternative-text="Down Arrow"></lightning-icon>
+        </div>
+
+        <!-- Package Details -->
+        <div class="slds-box slds-theme_default">
+            <div class="slds-text-heading_small slds-text-color_default">Package 1</div>
+            <div class="slds-text-body_small">Loft Insulation (between and over ceiling joists)</div>
+            
+            <div class="slds-grid slds-wrap slds-gutters slds-m-top_small">
+                <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                    <lightning-button label="Selected package" variant="brand" class="select-package-button" style="margin-right: 10px;"></lightning-button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Improvement Details -->
+        <div class="slds-grid slds-wrap slds-gutters">
+            <!-- Improvements selected for medium term plan -->
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-text-title_bold slds-m-bottom_x-small">Improvements selected for medium term plan: 1</div>
+                
+                <!-- Improvement fields -->
+                <lightning-input label="SAP rating" placeholder="Please enter a value" class="input-field slds-m-bottom_small"></lightning-input>
+                <lightning-input label="Lifetime" placeholder="Please enter a value" class="input-field slds-m-bottom_small"></lightning-input>
+                <lightning-input label="£/yr" placeholder="Please enter a value" class="input-field slds-m-bottom_small"></lightning-input>
+                <lightning-input label="Annual fuel savings" value="0.00" class="input-field slds-m-bottom_small"></lightning-input>
+                <lightning-input label="Lifetime fuel savings" value="0.00" class="input-field slds-m-bottom_small"></lightning-input>
+                <lightning-input label="Carbon score effect" value="0.00" class="input-field slds-m-bottom_small"></lightning-input>
+            </div>
+
+            <!-- Improvements selected for installation -->
+            <div class="slds-col slds-size_1-of-2">
+                <div class="slds-text-title_bold slds-m-bottom_x-small">Improvements selected for installation: 1</div>
+                
+                <!-- Improvement fields -->
+                <lightning-input label="Capital cost £" value="0.00" class="input-field slds-m-bottom_small"></lightning-input>
+                <lightning-input label="kWh/yr" placeholder="Please enter a value" class="input-field slds-m-bottom_small"></lightning-input>
+                <lightning-input label="CO2 kg/yr" placeholder="Please enter a value" class="input-field slds-m-bottom_small"></lightning-input>
+                <lightning-input label="Simple payback" value="0.00" class="input-field slds-m-bottom_small"></lightning-input>
+                <lightning-input label="Lifetime CO2 savings" value="0.00" class="input-field slds-m-bottom_small"></lightning-input>
+                <lightning-input label="Space heating demand" placeholder="Please enter a value" class="input-field slds-m-bottom_small"></lightning-input>
+            </div>
+        </div>
+    </lightning-card>
+</template>

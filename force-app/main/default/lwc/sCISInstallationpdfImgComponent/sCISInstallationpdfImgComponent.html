@@ -1,0 +1,77 @@
+<template>
+    <lightning-tabset
+        variant="scoped"
+        style="height: 600px; overflow-y: auto;"
+        onchange={handleMainTabChange}
+    >
+        <!-- Documents Tab -->
+        <lightning-tab label="Documents">
+            <template if:true={documentTabs}>
+                <lightning-tabset variant="scoped" active-tab-value={activeTabId}>
+                    <template for:each={documentTabs} for:item="tab">
+                        <lightning-tab
+                            key={tab.value}
+                            label={tab.label}
+                            value={tab.value}
+                            onactive={setFileID}
+                        >
+                            <template if:true={tab.isActive}>
+                                <iframe
+                                    key={tab.value}
+                                    src={fileUrl}
+                                    width="100%"
+                                    height="600px"
+                                    style="border: none;"
+                                    onload={refreshIframe}
+                                ></iframe>
+                            </template>
+                        </lightning-tab>
+                    </template>
+                </lightning-tabset>
+            </template>
+            <template if:true={noDocumentsAvailable}>
+                <lightning-card>
+                    <div>No related document files found.</div>
+                </lightning-card>
+            </template>
+        </lightning-tab>
+
+        <!-- Images Tab -->
+        <lightning-tab label="Images99">
+            <template if:true={imageTabs}>
+                <lightning-tabset variant="scoped" active-tab-value={activeTabId}>
+                    <template for:each={imageTabs} for:item="tab">
+                        <lightning-tab
+                            key={tab.value}
+                            label={tab.label}
+                            value={tab.value}
+                            onactive={setFileID}
+                        >
+                            <template if:true={tab.isActive}>
+                                <img
+                                    key={tab.value}
+                                    src={fileUrl}
+                                    alt={tab.label}
+                                    style="max-width: 100%; height: auto;"
+                                    onload={refreshImage}
+                                />
+                            </template>
+                        </lightning-tab>
+                    </template>
+                </lightning-tabset>
+            </template>
+            <template if:true={noImagesAvailable}>
+                <lightning-card>
+                    <div>No related image files found.</div>
+                </lightning-card>
+            </template>
+        </lightning-tab>
+    </lightning-tabset>
+
+    <!-- Error Message Display -->
+    <template if:true={error}>
+        <div class="slds-box slds-theme_error">
+            <p>{error}</p>
+        </div>
+    </template>
+</template>

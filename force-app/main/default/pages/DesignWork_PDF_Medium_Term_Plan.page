@@ -1,0 +1,182 @@
+<apex:page renderAs="pdf" controller="PdfGenerationForDesignWorkMediumTermPlan">
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Medium Term Plan</title>
+</head>
+<body style="font-family: Arial, sans-serif;">
+    <div style="">
+        <!-- Header Section -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;color: dark teal;text-align='center'">Medium Term Plan</div>
+            <div style="margin-left:">
+                <p><strong>Date:</strong> 07/06/2024</p>
+                <p><strong>Address:</strong> 42 Marlborough Drive, , BS226DQ, Avon, England</p>
+                <p><strong>Project reference:</strong> PAS-6789</p>
+                <p>The purpose of this plan is to guide the staged or phased improvement of the dwelling to which it applies by identifying the improvements that are needed by 2050 in order to achieve energy efficiency and sustainability (i.e. net zero carbon), and an appropriate order for their implementation, and by highlighting critical interactions between them.</p>
+            </div>
+        </div>
+        
+        <!-- Project Details -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Project Details</div>
+            <div style="margin-left:">
+                <p><strong>Project reference:</strong> PAS-6789</p>
+                <p><strong>Company name:</strong> South Coast Insulation Services Limited</p>
+                <p><strong>Number of dwellings:</strong> 1</p>
+                <p><strong>Number of improvements:</strong> 1</p>
+                <p><strong>Overall risk grade:</strong> A</p>
+            </div>
+        </div>
+
+        <!-- Retrofit Roles -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Retrofit Roles</div>
+            <div style="margin-left:">
+                <p><strong>Co-ordinator:</strong> Mr Antony Gillanders (2725426)</p>
+                <p><strong>Advisor:</strong> -</p>
+                <p><strong>Assessor:</strong> Nicholas Kurkov (2710251)</p>
+                <p><strong>Designer:</strong> Antony Gillanders (2725426)</p>
+                <p><strong>Evaluator:</strong> -</p>
+            </div>
+        </div>
+
+        <!-- Dwelling Details -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Dwelling Details</div>
+            <div style="margin-left:">
+                <p><strong>Dwelling type:</strong> Mid-terrace</p>
+                <p><strong>Conservation area:</strong> No</p>
+                <p><strong>World heritage site:</strong> No</p>
+                <p><strong>Special architecture or historic interest:</strong> No</p>
+            </div>
+        </div>
+        
+        <!-- Timeline of Project Events -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Timeline of Project Events</div>
+            <div style="margin-left:">
+                <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li>Project created on Friday 17th May 2024</li>
+                    <li>Retrofit assessment documents reviewed on Friday 17th May 2024</li>
+                    <li>Introduction letter sent on Friday 17th May 2024</li>
+                    <li>Ventilation strategy formed on Friday 17th May 2024</li>
+                    <li>Optioneering undertook on Friday 17th May 2024</li>
+                    <li>Retrofit wizard completed on Friday 17th May 2024</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Constraints on Improvements -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Constraints on Improvements</div>
+            <div style="margin-left:">
+                <p><strong>Constraints imposed by the history, architectural character or setting of the building:</strong> No</p>
+                <p><strong>Constraints imposed by the location of the building:</strong> No</p>
+                <p><strong>Constraints imposed by local planning:</strong> No</p>
+                <p><strong>Defects requiring repair prior to installation of improvement measures:</strong> No</p>
+                <p><strong>Other defects requiring attention in due course (not necessarily before retrofit):</strong> No</p>
+            </div>
+        </div>
+
+        <!-- Sequencing of Work -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Sequencing of Work</div>
+            <div style="margin-left:">
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 10px;">Seq</th>
+                            <th style="border: 1px solid black; padding: 10px;">Measure</th>
+                            <th style="border: 1px solid black; padding: 10px;">Installation cost</th>
+                            <th style="border: 1px solid black; padding: 10px;">Annual fuel saving</th>
+                            <th style="border: 1px solid black; padding: 10px;">Simple payback</th>
+                            <th style="border: 1px solid black; padding: 10px;">Lifetime fuel savings</th>
+                            <th style="border: 1px solid black; padding: 10px;">Lifetime CO2 saving</th>
+                            <th style="border: 1px solid black; padding: 10px;">Carbon cost effectiveness</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">1</td>
+                            <td style="border: 1px solid black; padding: 10px;">Cavity wall insulation</td>
+                            <td style="border: 1px solid black; padding: 10px;">1,500.00</td>
+                            <td style="border: 1px solid black; padding: 10px;">157.00</td>
+                            <td style="border: 1px solid black; padding: 10px;">9.55</td>
+                            <td style="border: 1px solid black; padding: 10px;">6,594.00</td>
+                            <td style="border: 1px solid black; padding: 10px;">62.64</td>
+                            <td style="border: 1px solid black; padding: 10px;">-81.318</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Measure Interaction -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc; page-break-inside: avoid;">
+            <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Measure Interaction</div>
+            <div style="margin-left: 20px;">
+                <p>The below table shows the interaction between measures that are being installed at the property within this initial sequence of works, calculated using the measure interaction matrix (see annex A below)</p>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
+                    
+                    <tbody>
+                        <tr>
+                        
+                            <td style="border: 1px solid black; padding: 10px;">Measures are independent and do not interact</td>
+                        </tr>
+                        <tr>
+                           
+                            <td style="border: 1px solid black; padding: 10px;">Measures interact or may connect and require construction details</td>
+                        </tr>
+                        <tr>
+                           
+                            <td style="border: 1px solid black; padding: 10px;">Measures interact and require complementary specification and/or upgrade</td>
+                        </tr>
+                        <tr>
+                          
+                            <td style="border: 1px solid black; padding: 10px;">Measures are not appropriate together or should not be combined</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">Cavity wall insulation</td>
+                            <td style="border: 1px solid black; padding: 10px;">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Program of Future Works -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Program of Future Works</div>
+            <div style="margin-left:">
+                <p>The work included in this plan are to be installed in the following sequence. However, the ventilation should be upgraded, where required, soon after, if not at the same time, as any new insulation is installed.</p>
+                <p>No future works provided</p>
+            </div>
+        </div>
+
+        <!-- Retrofit Co-ordinator Declarations -->
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Retrofit Co-ordinator Declarations</div>
+            <div style="margin-left:">
+                <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li>I confirm I accept the evidence provided by the Retrofit Assessor:       Yes</li>
+                    
+                    <li>I confirm that the ventilation fan has a maximum noise level 30 dBLAeq,T for IEV or 30dBLAeq,T for background mode for continuous systems:       Yes</li>
+                    
+                    <li>I confirm that ventilation system sized to provide a whole-dwelling background ventilation rate equivalent to at least the 'Minimum low rate' of whole-dwelling ventilation specified in Approved Document F, assuming occupancy equal to the number of bed spaces in the dwelling:          Yes</li>
+                    
+                    <li>I confirm that ventilation all fans specified as part of any of the ventilation systems described shall be an energy efficient model compliant with ECO Design Commission Regulations (EU) 1253/2014:           Yes</li>
+                    
+                    <li>I confirm that ventilation system design includes calculations provided by a technical consultant, specialist designer or the supplier of the system, to demonstrate the whole-dwelling ventilation rates are provided by the equipment proposed:           Yes</li>
+                    
+                    <li>I confirm that ventilation system was installed by operatives holding suitable qualifications identified in the Register of Regulated Qualifications maintained by Ofqual for England (and by its equivalents for the devolved nations) and approved by the manufacturer or supplier of the system:         Yes</li>
+                    
+                    <li>In the case the ventilation is inadequate but no action is required: Confirm that you have delivered the recommendation to the client the ventilation is inadequate and should be upgraded:            Yes</li>
+                    
+                    <li>The supply air requirements for combustion appliances (Boiler, wood stove, fireplace, gas fire etc) are met, Part J of Building Regs, (Section 2, 3 and 4):            Yes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+</apex:page>

@@ -1,0 +1,45 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 08-02-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Design Work">
+    <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+        <template if:true={showStartDesignWorkButton}>
+            <lightning-button   label="Start Design Work" 
+                            onclick={handleShowDesignFlowClick} 
+                            class="slds-m-around_medium"></lightning-button>     
+        </template>
+        
+        <template if:true={isDesignFlowVisible}>
+            <lightning-flow
+                flow-api-name={DesignflowApiName}
+                flow-input-variables={designFlowInputVariables}
+                onstatuschange={handleStatusChange}
+            ></lightning-flow>
+        </template> 
+    <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+        <template if:true={showProjectConstraintButton}>
+            <lightning-button   label="Project Constraint" 
+                            onclick={handleShowProjectConstraintButtonClick} 
+                            class="slds-m-around_medium"></lightning-button>     
+        </template>
+        
+        <template if:true={isProjectConstraintVisible}>
+            <lightning-flow
+                flow-api-name={projectConstraintFlowApiName}
+                flow-input-variables={designFlowInputVariables}
+                onstatuschange={handleStatusChange}
+            ></lightning-flow>
+        </template> 
+    <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+
+
+
+
+
+    </lightning-card>
+</template>

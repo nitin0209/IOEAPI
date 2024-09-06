@@ -1,0 +1,34 @@
+<template>
+    <!-- Display images if available -->
+    <template if:true={tabs}>
+        <lightning-tabset variant="scoped" active-tab-value={activeTabId}>
+            <!-- Iterate over the image tabs -->
+            <template for:each={tabs} for:item="tab">
+                <lightning-tab key={tab.value} label={tab.label} value={tab.value} onactive={setFileID}>
+                    <!-- Show image only if this tab is active -->
+                    <template if:true={tab.isActive}>
+                        <img 
+                            src={fileUrl} 
+                            alt={tab.label} 
+                            style="max-width: 100%; height: auto;" 
+                        />
+                    </template>
+                </lightning-tab>
+            </template>
+        </lightning-tabset>
+    </template>
+
+    <!-- Display an error message if there is an error -->
+    <template if:true={error}>
+        <div class="slds-box slds-theme_error">
+            <p>{error}</p>
+        </div>
+    </template>
+
+    <!-- Display a message if no images are found -->
+    <template if:true={noImagesAvailable}>
+        <lightning-card>
+            <div>No related images found.</div>
+        </lightning-card>
+    </template>
+</template>

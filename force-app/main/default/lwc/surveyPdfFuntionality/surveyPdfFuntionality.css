@@ -1,0 +1,14 @@
+:host {
+    display: block;
+}
+
+/* Use higher specificity or !important */
+.slds-tabs_default__nav .slds-tabs_default__item {
+    min-width: 90px !important;
+    height: 50px !important;
+}
+
+.slds-tabs_default__link {
+    font-size: 1.2rem !important;
+    padding: 0.5rem 1rem !important;
+}

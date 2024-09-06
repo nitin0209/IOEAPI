@@ -1,0 +1,32 @@
+<template>
+    <!-- Check if there are any files to display -->
+    <template if:true={fileID}>
+        <lightning-tabset variant="scoped">
+            <!-- Loop through each tab to create a tab for each file -->
+            <template for:each={tabs} for:item="tab">
+                <lightning-tab key={tab.value} label={tab.label} value={tab.value} onactive={setFileID}>
+                    <!-- Display image if the tab is active -->
+                    <template if:true={tab.isActive}>
+                        <img 
+                            src={fileUrl} 
+                            alt={tab.label} 
+                            style="max-width: 100%; height: auto;" 
+                        />
+                    </template>
+                </lightning-tab>
+            </template>
+        </lightning-tabset>
+    </template>
+
+    <!-- Message to display if no files are found -->
+    <template if:false={fileID}>
+        <lightning-card>
+            <div>No related image file found.</div>
+        </lightning-card>
+    </template>
+
+    <!-- Error panel to display any errors -->
+    <template if:true={error}>
+        <c-error-panel errors={error}></c-error-panel>
+    </template>
+</template>

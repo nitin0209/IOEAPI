@@ -1,0 +1,61 @@
+<template>
+    <lightning-card title="Lead Generator Assignment">
+        <div class="slds-p-around_medium">
+            <label for="datePicker">Select Date:</label>
+            <input type="date" id="datePicker" value={selectedDate} oninput={handleDateChange} />
+        </div>
+        <template if:true={leadGeneratorsAssigned}>
+            <lightning-combobox
+                name="assignedLeadGenerator"
+                label="Assigned Lead Generators"
+                value={selectedLeadGenerator}
+                options={leadGeneratorsAssigned}
+                onchange={handleLeadGeneratorChange}>
+            </lightning-combobox>
+        </template>
+        <h1>{selectedLeadGenerator}</h1>
+        <lightning-button label="Reassign" onclick={handleReassign} variant="brand"></lightning-button>
+
+        <template if:true={leadGeneratorsNotAssigned}>
+            <lightning-combobox
+                name="notAssignedLeadGenerator"
+                label="Not Assigned Lead Generators"
+                value={selectedLeadGenerator}
+                options={leadGeneratorsNotAssigned}
+                onchange={handleLeadGeneratorChange}>
+            </lightning-combobox>
+        </template>
+        <lightning-button label="Assign" onclick={handleReassign} variant="brand"></lightning-button>
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+        <template if:true={loading}>
+            <p>Loading lead generators...</p>
+        </template>
+    </lightning-card>
+
+    <!-- Popup section -->
+    <template if:true={showReAssignmentpopUp}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closePopup}>
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Cancel and close</span>
+                </button>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Lead Generator already assigned to Leads.</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p>Do you want to reassign to work?</p>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" aria-label="Yes" onclick={handleYes}>Yes</button>
+                    <button class="slds-button slds-button_neutral" aria-label="No" onclick={handleNo}>No</button>
+                </div>  
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+</template>
