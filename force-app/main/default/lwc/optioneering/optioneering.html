@@ -3,12 +3,8 @@
         <div class="slds-p-around_medium">
             <lightning-button label="Fetch Latest Response" onclick={handleFetch} variant="brand"></lightning-button>
             <lightning-button label="Make HTTP Post Request" onclick={handleMakeHttpPostRequest} variant="brand"></lightning-button>
-            <!-- <template if:true={responseBody}>
-                <p>{responseBody}</p>
-            </template> -->
         </div>
     </lightning-card>
-
 
     <lightning-card title="Improvement Optioneering" class="card-container">
         <div class="slds-box slds-theme_default">
@@ -20,7 +16,6 @@
                 readonly
             ></lightning-input>
 
-
             <lightning-input
                 label="Current total fuel costs (£/yr)"
                 value={totalFuelCosts}
@@ -28,7 +23,6 @@
                 class="input-field"
                 readonly
             ></lightning-input>
-
 
             <lightning-input
                 label="Current CO2 emissions (CO2kg/yr)"
@@ -38,7 +32,6 @@
                 readonly
             ></lightning-input>
 
-
             <lightning-input
                 label="Current Energy Rating"
                 value={eiRating}
@@ -46,7 +39,6 @@
                 class="input-field"
                 readonly
             ></lightning-input>
-
 
             <lightning-input
                 label="Current space heating demand (kWh/m2/year)"
@@ -57,6 +49,22 @@
             ></lightning-input>
         </div>
 
+        <!-- New section to display recommendations -->
+        <template if:true={recommendations}>
+            <div class="slds-box slds-theme_default slds-m-top_medium">
+                <h2>Recommendations</h2>
+                <template for:each={recommendations} for:item="recommendation">
+                    <div key={recommendation.name} class="slds-p-around_small slds-border_bottom">
+                        <p><strong>Name:</strong> {recommendation.name}</p>
+                        <p><strong>Description:</strong> {recommendation.text}</p>
+                        <!-- Commenting out these fields for testing -->
+                        <!-- <p><strong>Selected:</strong> {recommendation.isCheckedLabel}</p> -->
+                        <!-- <p><strong>Is Enabled:</strong> {recommendation.isEnabledLabel}</p> -->
+                        <p><strong>Result:</strong> {recommendation.result}</p>
+                    </div>
+                </template>
+            </div>
+        </template>
 
         <div onclick={handleOptioneeringClick} style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border: 1px solid #d8dde6; border-radius: 5px; margin-top: 20px; cursor: pointer;">
             <span>Optioneering</span>

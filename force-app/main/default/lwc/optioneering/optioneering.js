@@ -3,7 +3,6 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import fetchLatestResponse from '@salesforce/apex/IOEResponseController.fetchLatestResponse';
 import makeHttpPostRequest from '@salesforce/apex/scisIOEResponseHandler.makeHttpPostRequest';
 
-
 export default class Optioneering extends LightningElement {
     @track responseBody;
     @track eiRating;
@@ -11,7 +10,7 @@ export default class Optioneering extends LightningElement {
     @track totalFuelCosts;
     @track co2Emissions;
     @track spaceHeatingDemand;
-
+    @track recommendations = []; // Track recommendations
 
     // Fetches the latest response from Salesforce and parses it
     handleFetch() {
@@ -20,10 +19,9 @@ export default class Optioneering extends LightningElement {
                 if (result) {
                     this.responseBody = result.Response_Body__c;
 
-
                     // Parse the JSON response from the fetched result
                     let responseJson = JSON.parse(result.Response_Body__c);
-                   
+
                     // Extract values from JSON response using safe access
                     this.eiRating = responseJson.eiRating || null;
                     this.totalDeliveredEnergy = responseJson.primaryEnergy || null;
@@ -31,6 +29,13 @@ export default class Optioneering extends LightningElement {
                     this.co2Emissions = responseJson.cO2Emissions || null;
                     this.spaceHeatingDemand = responseJson.spaceHeatingCost || null;
 
+                    // Extract recommendations if present
+                    this.recommendations = responseJson.recommendations.map(recommendation => {
+                        return {
+                            ...recommendation,
+                            isCheckedLabel: recommendation.isChecked ? 'Yes' : 'No' // Add a new field for 'Yes' or 'No'
+                        };
+                    });
 
                     // Show success toast
                     this.showToast('Success', 'Latest response fetched successfully', 'success');
@@ -46,7 +51,6 @@ export default class Optioneering extends LightningElement {
             });
     }
 
-
     // Method to call the Apex makeHttpPostRequest method with toast messages
     handleMakeHttpPostRequest() {
         makeHttpPostRequest()
@@ -54,10 +58,8 @@ export default class Optioneering extends LightningElement {
                 if (response) {
                     this.responseBody = response;
 
-
                     // Parse the JSON response
                     let responseJson = JSON.parse(response);
-
 
                     // Update component state with parsed data
                     this.eiRating = responseJson.eiRating || null;
@@ -66,6 +68,13 @@ export default class Optioneering extends LightningElement {
                     this.co2Emissions = responseJson.cO2Emissions || null;
                     this.spaceHeatingDemand = responseJson.spaceHeatingCost || null;
 
+                    // Extract recommendations if present
+                    this.recommendations = responseJson.recommendations.map(recommendation => {
+                        return {
+                            ...recommendation,
+                            isCheckedLabel: recommendation.isChecked ? 'Yes' : 'No' // Add a new field for 'Yes' or 'No'
+                        };
+                    });
 
                     // Show success toast
                     this.showToast('Success', 'HTTP POST request completed successfully', 'success');
@@ -76,14 +85,6 @@ export default class Optioneering extends LightningElement {
                 this.showToast('Error', 'An error occurred while making the HTTP POST request', 'error');
             });
     }
-
-
-    // Handles click event for Improvement Options
-    handleOptioneeringClick() {
-        const showImprovementOptionsEvent = new CustomEvent('showimprovementoptions');
-        this.dispatchEvent(showImprovementOptionsEvent);
-    }
-
 
     // Utility method to show toast messages
     showToast(title, message, variant) {

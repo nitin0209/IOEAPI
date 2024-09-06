@@ -1,5 +1,5 @@
 public class scisIOEResponseHandler {
-    
+
     @AuraEnabled
     public static String makeHttpPostRequest() {
         String endpointUrl = 'https://improvement-evaluator-integration-api-staging.elmhurstenergy.net/api/Assessment/Calculate';
@@ -33,16 +33,37 @@ public class scisIOEResponseHandler {
 
                 // Parse the JSON response
                 Map<String, Object> responseMap = (Map<String, Object>) JSON.deserializeUntyped(responseBody);
-                
-                // Extract data from the JSON
+
+                // Extract general data
                 Decimal eiRating = responseMap.containsKey('eiRating') ? (Decimal)responseMap.get('eiRating') : null;
                 Decimal spaceHeatingDemand = responseMap.containsKey('spaceHeatingCost') ? (Decimal)responseMap.get('spaceHeatingCost') : null;
                 Decimal primaryEnergy = responseMap.containsKey('primaryEnergy') ? (Decimal)responseMap.get('primaryEnergy') : null;
                 Decimal totalCost = responseMap.containsKey('totalCost') ? (Decimal)responseMap.get('totalCost') : null;
                 
-                // Log extracted data
-                System.debug('Extracted eiRating: ' + eiRating);
-                System.debug('Extracted Space Heating Demand: ' + spaceHeatingDemand);
+                // Extract recommendations (Assuming it's a List of Maps)
+                List<Map<String, Object>> recommendations = (List<Map<String, Object>>)responseMap.get('recommendations');
+                if (recommendations != null && recommendations.size() > 0) {
+                    for (Map<String, Object> recommendation : recommendations) {
+                        // Extract individual recommendation details
+                        String item = (String) recommendation.get('item');
+                        String name = (String) recommendation.get('name');
+                        Boolean selected = (Boolean) recommendation.get('selected');
+                        Decimal sapRating = (Decimal) recommendation.get('sapRating');
+                        Decimal capitalCost = (Decimal) recommendation.get('capitalCost');
+                        Decimal fuelCostSaving = (Decimal) recommendation.get('fuelCostSaving');
+
+                        // Log recommendation details
+                        System.debug('Recommendation Item: ' + item);
+                        System.debug('Recommendation Name: ' + name);
+                        System.debug('Recommendation Selected: ' + selected);
+                        System.debug('Recommendation SAP Rating: ' + sapRating);
+                        System.debug('Recommendation Capital Cost: ' + capitalCost);
+                        System.debug('Recommendation Fuel Cost Saving: ' + fuelCostSaving);
+
+                        // You can store these details in a Salesforce object or use as needed
+                        // For example, you can insert this data into a related object in Salesforce
+                    }
+                }
 
                 // Create a new IOE_Response__c record and map the extracted data
                 IOE_Response__c responseRecord = new IOE_Response__c();
