@@ -35,7 +35,7 @@
                 <p><strong>Co-ordinator:</strong>{!Designwork2.Survey__r.Assigned_Coordinator__c}</p>
                 <p><strong>Advisor:</strong>-</p>
                 <p><strong>Assessor:</strong>-</p>
-                <p><strong>Designer:</strong>-</p>
+                <p><strong>Designer:</strong>{!Designwork2.Survey__r.Assigned_Coordinator__c}</p>
                 <p><strong>Evaluator:</strong>-</p>
             </div>
         </div>
