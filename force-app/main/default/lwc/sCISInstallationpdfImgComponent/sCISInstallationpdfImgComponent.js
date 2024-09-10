@@ -1,15 +1,25 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import getRelatedFilesByRecordId from '@salesforce/apex/SCISInstallationImgPdfController.getRelatedFilesByRecordId';
 
-export default class SCISInstallationPdfImgComponent extends LightningElement {
+export default class SCISInstallationpdfImgComponent extends LightningElement {
     @api recordId;
+    @api heightInRem;
     @track error;
     @track fileID;
-    @track pdfFiles = {};
-    @track imageFiles = {};
+    @track pdfFiles = {}; // Map to store PDFs
+    @track imageFiles = {}; // Map to store images
     @track activeTabId = '';
     @track fileUrl = '';
-    @track activeContentType = '';
+    @track activeContentType = ''; // Track the type of active content (pdf or image)
+
+    MAX_VISIBLE_TABS = 3; // Number of tabs before "More" option appears
+    @track visibleDocumentTabs = [];
+    @track moreDocumentTabs = [];
+    @track visibleImageTabs = [];
+    @track moreImageTabs = [];
+    @track showMoreDocuments = false;
+    @track showMoreImages = false;
+    @track isFirstRender = true; // Track first render to manage initial loading
 
     @wire(getRelatedFilesByRecordId, { parentRecordId: '$recordId' })
     wiredFieldValue({ error, data }) {
@@ -25,6 +35,9 @@ export default class SCISInstallationPdfImgComponent extends LightningElement {
                 this.fileUrl = this.getFileUrl(this.fileID);
                 this.activeContentType = this.pdfFiles[this.fileID] ? 'pdf' : 'image';
             }
+
+            // Adjust tabs after data is fetched
+            this.adjustTabs();
         } else if (error) {
             this.error = error;
             this.pdfFiles = {};
@@ -48,18 +61,42 @@ export default class SCISInstallationPdfImgComponent extends LightningElement {
         return Object.entries(files).map(([ID, title]) => ({
             value: ID,
             label: title,
-            isActive: this.activeTabId === ID,
+            isActive: this.activeTabId === ID
         }));
     }
 
     setFileID(event) {
         this.activeTabId = event.target.value;
         this.fileID = this.activeTabId;
+
+        // Update file URL
         this.fileUrl = this.getFileUrl(this.fileID);
+
+        // Determine content type for reloading
         this.activeContentType = this.pdfFiles[this.fileID] ? 'pdf' : 'image';
 
+        // Reload the relevant content only
         this.reloadContent();
     }
+
+    // for connectedCallBack start here
+    // connectedCallback() {
+        
+    //     this.initializeActiveTab();
+    // }
+    
+    // initializeActiveTab() {
+        
+    //     const tabs = this.generateTabs(this.files);
+        
+        
+    //     if (tabs.length > 0) {
+    //         this.activeTabId = tabs[0].value;
+    //         this.setFileID({ target: { value: this.activeTabId } });
+    //     }
+    // }
+
+    // connectCallBack ends here
 
     getFileUrl(fileID) {
         if (!fileID) return '';
@@ -67,52 +104,62 @@ export default class SCISInstallationPdfImgComponent extends LightningElement {
     }
 
     reloadContent() {
-        // Force the iframe or img to reload
         if (this.activeContentType === 'pdf') {
-            this.resetIframe();
-        } else if (this.activeContentType === 'image') {
-            this.resetImage();
-        }
-    }
-
-    resetIframe() {
-        // Reset and reload the iframe for PDFs
-        const iframe = this.template.querySelector('iframe');
-        if (iframe) {
-            iframe.src = ''; // Reset the iframe src to force reload
-            setTimeout(() => {
+            const iframe = this.template.querySelector('iframe');
+            if (iframe) {
                 iframe.src = this.fileUrl;
-            }, 50); // Delay to ensure proper reload
-        }
-    }
-
-    resetImage() {
-        // Reset and reload the img for images
-        const img = this.template.querySelector('img');
-        if (img) {
-            img.src = ''; // Reset the img src to force reload
-            setTimeout(() => {
+            }
+        } else if (this.activeContentType === 'image') {
+            const img = this.template.querySelector('img');
+            if (img) {
                 img.src = this.fileUrl;
-            }, 50); // Delay to ensure proper reload
+            }
         }
     }
 
-    handleMainTabChange(event) {
-        const selectedTabLabel = event.target.label;
-
-        if (selectedTabLabel === 'Documents' && this.documentTabs.length > 0) {
+    handleTabChange(event) {
+        // This method is triggered when the main tab (Documents or Images) changes
+        if (event.target.label === 'Documents' && this.documentTabs.length > 0) {
             this.activeTabId = this.documentTabs[0].value;
-            this.fileID = this.activeTabId;
-            this.fileUrl = this.getFileUrl(this.fileID);
+            this.fileUrl = this.getFileUrl(this.activeTabId);
             this.activeContentType = 'pdf';
-        } else if (selectedTabLabel === 'Images' && this.imageTabs.length > 0) {
+        } else if (event.target.label === 'Images' && this.imageTabs.length > 0) {
             this.activeTabId = this.imageTabs[0].value;
-            this.fileID = this.activeTabId;
-            this.fileUrl = this.getFileUrl(this.fileID);
+            this.fileUrl = this.getFileUrl(this.activeTabId);
             this.activeContentType = 'image';
         }
 
         this.reloadContent();
+    }
+
+    adjustTabs() {
+        const docTabs = this.documentTabs;
+        const imgTabs = this.imageTabs;
+
+        this.visibleDocumentTabs = docTabs.slice(0, this.MAX_VISIBLE_TABS);
+        this.moreDocumentTabs = docTabs.slice(this.MAX_VISIBLE_TABS);
+
+        this.visibleImageTabs = imgTabs.slice(0, this.MAX_VISIBLE_TABS);
+        this.moreImageTabs = imgTabs.slice(this.MAX_VISIBLE_TABS);
+
+        this.showMoreDocuments = this.moreDocumentTabs.length > 0;
+        this.showMoreImages = this.moreImageTabs.length > 0;
+    }
+
+    renderedCallback() {
+        if (this.isFirstRender) {
+            this.adjustTabStyles();
+            this.reloadContent();
+            this.isFirstRender = false;
+        }
+    }
+
+    adjustTabStyles() {
+        const tabs = this.template.querySelectorAll('.slds-tabs_default__item');
+        tabs.forEach(tab => {
+            tab.style.minWidth = '150px';
+            tab.style.height = '50px';
+        });
     }
 
     get noDocumentsAvailable() {

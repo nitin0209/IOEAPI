@@ -1,4 +1,5 @@
 <template>
+    <!-- Latest IOE Response card -->
     <lightning-card title="Latest IOE Response">
         <div class="slds-p-around_medium">
             <lightning-button label="Fetch Latest Response" onclick={handleFetch} variant="brand"></lightning-button>
@@ -6,8 +7,11 @@
         </div>
     </lightning-card>
 
+
+    <!-- Improvement Optioneering card -->
     <lightning-card title="Improvement Optioneering" class="card-container">
         <div class="slds-box slds-theme_default">
+            <!-- Current total delivered energy (kWh/yr) -->
             <lightning-input
                 label="Current total delivered energy (kWh/yr)"
                 value={totalDeliveredEnergy}
@@ -16,6 +20,8 @@
                 readonly
             ></lightning-input>
 
+
+            <!-- Current total fuel costs (£/yr) -->
             <lightning-input
                 label="Current total fuel costs (£/yr)"
                 value={totalFuelCosts}
@@ -24,6 +30,8 @@
                 readonly
             ></lightning-input>
 
+
+            <!-- Current CO2 emissions (CO2kg/yr) -->
             <lightning-input
                 label="Current CO2 emissions (CO2kg/yr)"
                 value={co2Emissions}
@@ -32,6 +40,8 @@
                 readonly
             ></lightning-input>
 
+
+            <!-- Current Energy Rating -->
             <lightning-input
                 label="Current Energy Rating"
                 value={eiRating}
@@ -40,6 +50,8 @@
                 readonly
             ></lightning-input>
 
+
+            <!-- Current space heating demand (kWh/m2/year) -->
             <lightning-input
                 label="Current space heating demand (kWh/m2/year)"
                 value={spaceHeatingDemand}
@@ -47,9 +59,11 @@
                 class="input-field"
                 readonly
             ></lightning-input>
+            
         </div>
 
-        <!-- New section to display recommendations -->
+
+        <!-- Recommendations section -->
         <template if:true={recommendations}>
             <div class="slds-box slds-theme_default slds-m-top_medium">
                 <h2>Recommendations</h2>
@@ -57,18 +71,21 @@
                     <div key={recommendation.name} class="slds-p-around_small slds-border_bottom">
                         <p><strong>Name:</strong> {recommendation.name}</p>
                         <p><strong>Description:</strong> {recommendation.text}</p>
-                        <!-- Commenting out these fields for testing -->
-                        <!-- <p><strong>Selected:</strong> {recommendation.isCheckedLabel}</p> -->
-                        <!-- <p><strong>Is Enabled:</strong> {recommendation.isEnabledLabel}</p> -->
                         <p><strong>Result:</strong> {recommendation.result}</p>
                     </div>
                 </template>
             </div>
         </template>
 
+
+        <!-- Optioneering section -->
         <div onclick={handleOptioneeringClick} style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border: 1px solid #d8dde6; border-radius: 5px; margin-top: 20px; cursor: pointer;">
             <span>Optioneering</span>
             <lightning-icon icon-name="utility:chevronright" size="small" alternative-text="Right Arrow"></lightning-icon>
         </div>
+
+
+        <!-- Save Package Data Button -->
+        <lightning-button label="Save Package Data" onclick={handleSavePackageData} variant="brand" class="slds-m-top_medium"></lightning-button>
     </lightning-card>
 </template>

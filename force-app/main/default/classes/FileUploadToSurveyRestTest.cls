@@ -1,17 +1,3 @@
-/* 
-**************************************************************************************************************************************************
-Developer Name 			: 	Dhiraj Lohar
-Created Date 			:	26-02-2024
-Class Name 				: 	FileUploadToSurveyRest
-TestClass Name 			: 	FileUploadToSurveyRestTest
-Description 			: 	This is test class for FileUploadToSurveyRest.
-Last Modification Date 	: 	21-05-2024
-Last Modified By 		:	Dhiraj Lohar
-Modification Description:	NO MODIFICATION YET. (PLEASE WRITE MODIFICATION IN BULLETS WITH MODIFICATION DATE)
-							#1Change : 21-05-2024 : Updated code to delete the associated images with survey
-							#2Change : 21-05-2024 : Creating public url for pdf
-************************************************************************************************************************************************** */
-
 @isTest
 private class FileUploadToSurveyRestTest {
 
@@ -30,7 +16,8 @@ private class FileUploadToSurveyRestTest {
 
         // Call the method
         Test.startTest();
-        Map<String, String> response = FileUploadToSurveyRest.uploadsurveyImage(survey.Id, 'TestImage', 'Base64Data', true, 'jpg');
+        // Make sure to pass all required parameters
+        Map<String, String> response = FileUploadToSurveyRest.uploadsurveyImage(survey.Id, 'TestImage', 'VGhpcyBpcyBhIHRlc3QgYmFzZTY0IGRhdGE=', true, 'jpg', false);
         Test.stopTest();
 
         // Assertions
@@ -73,7 +60,7 @@ private class FileUploadToSurveyRestTest {
 
         // Call the method
         Test.startTest();
-        Map<String, String> response = FileUploadToSurveyRest.uploadsurveyImage(survey.Id, 'NewImage', 'Base64Data', true, 'jpg');
+        Map<String, String> response = FileUploadToSurveyRest.uploadsurveyImage(survey.Id, 'NewImage', 'VGhpcyBpcyBhIHRlc3QgYmFzZTY0IGRhdGE=', true, 'jpg', false);
         Test.stopTest();
 
         // Assertions
@@ -97,7 +84,7 @@ private class FileUploadToSurveyRestTest {
 
         // Call the method with an invalid Survey ID
         Test.startTest();
-        Map<String, String> response = FileUploadToSurveyRest.uploadsurveyImage('InvalidId', 'TestImage', 'Base64Data', true, 'jpg');
+        Map<String, String> response = FileUploadToSurveyRest.uploadsurveyImage('InvalidId', 'TestImage', 'VGhpcyBpcyBhIHRlc3QgYmFzZTY0IGRhdGE=', true, 'jpg', false);
         Test.stopTest();
 
         // Assertions
@@ -116,7 +103,7 @@ private class FileUploadToSurveyRestTest {
 
         // Call the method with null Survey ID
         Test.startTest();
-        Map<String, String> response = FileUploadToSurveyRest.uploadsurveyImage(null, 'TestImage', 'Base64Data', true, 'jpg');
+        Map<String, String> response = FileUploadToSurveyRest.uploadsurveyImage(null, 'TestImage', 'VGhpcyBpcyBhIHRlc3QgYmFzZTY0IGRhdGE=', true, 'jpg', false);
         Test.stopTest();
 
         // Assertions
