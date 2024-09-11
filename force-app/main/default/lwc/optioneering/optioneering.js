@@ -12,7 +12,6 @@ export default class Optioneering extends LightningElement {
     @track co2Emissions;
     @track spaceHeatingDemand;
     @track recommendations = []; // Track recommendations
-    @track recommendationData = []; // Track extracted recommendation data (name, text, result)
 
     // Fetches the latest response from Salesforce and parses it
     handleFetch() {
@@ -20,12 +19,10 @@ export default class Optioneering extends LightningElement {
             .then(result => {
                 if (result) {
                     console.log('Fetched response from Salesforce:', result);
-
                     this.responseBody = result.Response_Body__c;
 
                     // Parse the JSON response from the fetched result
                     let responseJson = JSON.parse(result.Response_Body__c);
-
                     console.log('Parsed JSON response:', responseJson);
 
                     // Extract values from JSON response using safe access
@@ -35,24 +32,10 @@ export default class Optioneering extends LightningElement {
                     this.co2Emissions = responseJson.cO2Emissions || null;
                     this.spaceHeatingDemand = responseJson.spaceHeatingCost || null;
 
-                    // Extract recommendations if present
-                    this.recommendations = responseJson.recommendations.map(recommendation => {
-                        return {
-                            ...recommendation,
-                            isCheckedLabel: recommendation.isChecked ? 'Yes' : 'No' // Add a new field for 'Yes' or 'No'
-                        };
-                    });
+                    // Extract recommendations directly
+                    this.recommendations = responseJson.recommendations || [];
 
-                    // Prepare recommendation data for saving
-                    this.recommendationData = responseJson.recommendations.map(recommendation => {
-                        return {
-                            name: recommendation.name || '',
-                            text: recommendation.text || '',
-                            result: recommendation.result || 0
-                        };
-                    });
-
-                    console.log('Extracted recommendation data:', this.recommendationData);
+                    console.log('Recommendations:', this.recommendations);
 
                     // Show success toast
                     this.showToast('Success', 'Latest response fetched successfully', 'success');
@@ -75,24 +58,16 @@ export default class Optioneering extends LightningElement {
             .then(response => {
                 if (response) {
                     console.log('HTTP POST request response:', response);
-
                     this.responseBody = response;
 
                     // Parse the JSON response
                     let responseJson = JSON.parse(response);
-
                     console.log('Parsed JSON from HTTP POST request:', responseJson);
 
-                    // Extract data for recommendations
-                    this.recommendationData = responseJson.recommendations.map(recommendation => {
-                        return {
-                            name: recommendation.name || '',
-                            text: recommendation.text || '',
-                            result: recommendation.result || 0
-                        };
-                    });
+                    // Extract recommendations directly
+                    this.recommendations = responseJson.recommendations || [];
 
-                    console.log('Extracted recommendation data:', this.recommendationData);
+                    console.log('Recommendations:', this.recommendations);
 
                     // Show success toast
                     this.showToast('Success', 'HTTP POST request completed successfully', 'success');
@@ -104,13 +79,11 @@ export default class Optioneering extends LightningElement {
             });
     }
 
-    // Method to save the recommendations data to Salesforce
+    // Method to save the recommendations data to Salesforce    
     handleSavePackageData() {
-        // Debugging to check if values are passed correctly
-        console.log('Package Data being saved:', this.recommendationData);
+        console.log('Package Data being saved:', this.recommendations);
 
-        // Pass the extracted recommendation data to Apex
-        savePackageData({ recommendationData: this.recommendationData })
+        savePackageData({ recommendationData: this.recommendations })
             .then(result => {
                 console.log('Package data saved successfully:', result);
                 this.showToast('Success', 'Package data saved successfully', 'success');
@@ -119,6 +92,12 @@ export default class Optioneering extends LightningElement {
                 console.error('Error saving package data:', error);
                 this.showToast('Error', 'Failed to save package data', 'error');
             });
+    }
+
+    // Handles click event for Improvement Options
+    handleOptioneeringClick() {
+        const showImprovementOptionsEvent = new CustomEvent('showimprovementoptions');
+        this.dispatchEvent(showImprovementOptionsEvent);
     }
 
     // Utility method to show toast messages

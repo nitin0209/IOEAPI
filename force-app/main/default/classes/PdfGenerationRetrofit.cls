@@ -5,7 +5,7 @@ public class PdfGenerationRetrofit {
     public PdfGenerationRetrofit() {
         Id DesignworkId4 = ApexPages.currentPage().getParameters().get('id');
         if (DesignworkId4 != null) {
-           Designwork4 = [ SELECT Id, Name, EV_Is_the_damp_or_mold_present__c,EV_Do_you_have_ventilation_installed__c, D_ventilation_inadequate_no_action_req__c,
+           Designwork4 = [ SELECT Id, Name,  Date__c,Survey__r.Assigned_Coordinator__c,Survey__r.Define_Measures__c,
                             dMEV_Gross_internal_area_of_the_property__c, dMEV_Number_of_single_bedrooms__c, dMEV_Number_of_double_bedrooms__c, dMEV_Whole_dwelling_ventilation_rate__c,
           Address__c, Address__Street__s, Address__City__s, Address__PostalCode__s,  Address__StateCode__s, Address__CountryCode__s   FROM Design_Work__c WHERE Id = :DesignworkId4 LIMIT 1];
         }

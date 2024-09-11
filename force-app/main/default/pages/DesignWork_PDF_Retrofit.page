@@ -1,135 +1,356 @@
 <apex:page renderAs="pdf" controller="PdfGenerationRetrofit" showHeader="false">
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Retrofit Design</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .section-title {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            border-bottom: 1px solid black;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid black;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
 <body>
-
-    <!-- Project Details -->
-    <div>
-        <div class="section-title">Project Details</div>
-        <p><strong>Address:</strong> -</p>
-        <p><strong>Date:</strong> -</p>
-        <p><strong>Retrofit Assessor:</strong> -</p>
-        <p><strong>Retrofit Coordinator:</strong> -</p>
-        <p><strong>Retrofit Designer:</strong> -</p>
+<!-- Logo section -->
+<div style="text-align: center; margin-bottom: 20px;">
+        <img src="{!URLFOR($Resource.SCISLogoImg)}" alt="South Coast Insulation Services Logo"  />
     </div>
-
-    <!-- Measures to be Installed -->
+   <!-- Project Details -->
     <div>
-        <div class="section-title">Measures to be Installed</div>
-        <p>-</p>
-    </div>
-
-    <!-- PAS2035 Stage Activity Comments -->
-    <div>
-        <div class="section-title">PAS2035 Stage Activity Comments</div>
-        <table>
+        <table style="width: 50%; border-collapse: collapse; margin-bottom: 5px; border: 1px solid black;">
             <tr>
-                <th>Activity</th>
-                <th>Comments</th>
+                <td style="border: 1px solid black; padding: 8px;"><strong>Address</strong></td>
+                <td style="border: 1px solid black; padding: 8px;">{!Address}</td>
             </tr>
             <tr>
-                <td>Retrofit Designer Qualifications</td>
-                <td>-</td>
+                <td style="border: 1px solid black; padding: 8px;"><strong>Date</strong></td>
+                <td style="border: 1px solid black; padding: 8px;">{!Designwork4.Date__c}</td>
             </tr>
             <tr>
-                <td>Review Guidance</td>
-                <td>-</td>
+                <td style="border: 1px solid black; padding: 8px;"><strong>Retrofit Assessor</strong></td>
+                <td style="border: 1px solid black; padding: 8px;">Tim Hart</td>
             </tr>
             <tr>
-                <td>Review Assessment Information</td>
-                <td>-</td>
+                <td style="border: 1px solid black; padding: 8px;"><strong>Retrofit Coordinator</strong></td>
+                <td style="border: 1px solid black; padding: 8px;">{!Designwork4.Survey__r.Assigned_Coordinator__c}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;"><strong>Retrofit Designer</strong></td>
+                <td style="border: 1px solid black; padding: 8px;">{!Designwork4.Survey__r.Assigned_Coordinator__c}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;"><strong>Measures to be Installed</strong></td>
+                <td style="border: 1px solid black; padding: 8px;">{!Designwork4.Survey__r.Define_Measures__c}</td>
             </tr>
         </table>
     </div>
+    
+   <div>
+<!-- PAS2035 Stage Activity Comments with common stage type -->
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
+    <tr>
+        <th style="border: 1px solid black; padding: 8px;">Stage</th>
+        <th style="border: 1px solid black; padding: 8px;">Activity</th>
+        <th style="border: 1px solid black; padding: 8px;">Comments</th>
+    </tr>
 
-    <!-- Ventilation Strategy -->
-    <div>
-        <div class="section-title">Ventilation Strategy</div>
-        <p><strong>Overall Strategy:</strong> -</p>
-    </div>
+    <!-- Preliminaries (common stage type for multiple rows) -->
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;" rowspan="4">Preliminaries</td>
+        <td style="border: 1px solid black; padding: 8px;">Retrofit Designer Qualifications</td>
+        <td style="border: 1px solid black; padding: 8px;">{!Designwork4.Survey__r.Assigned_Coordinator__c} will be the Retrofit Designer for this project and is
+qualified as a Retrofit Coordinator (Level 5 Retrofit Coordination and Risk Management)</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Review Guidance</td>
+        <td style="border: 1px solid black; padding: 8px;">The information that has been captured by the PAS assessments and thetechnical assessments is sufficient to prepare the design.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Review Assessment Information</td>
+        <td style="border: 1px solid black; padding: 8px;">The information that has been captured by the PAS assessments and the technical assessments is sufficient to prepare the design.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Retrofit Coordinator Activities</td>
+        <td style="border: 1px solid black; padding: 8px;">The Improvement Option Evaluation for this project will be provided by the Retrofit Coordinator.</td>
+    </tr> <!-- Retrofit Design (common stage type for multiple rows) -->
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;" rowspan="20">Retrofit Design</td>
+        <td style="border: 1px solid black; padding: 8px;">Scope of Design</td>
+        <td style="border: 1px solid black; padding: 8px;">The scope of the design has been agreed with the Retrofit Coordinator.The intended outcomes are in line with the Energy Company Obligation(ECO), LAD, HUG requirements and are intended to assist in reducingcarbon emissions, maintaining security of energy supply, and reducingfuel poverty.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">PAS2035 Compliant Design (Room In Roof)</td>
+        <td style="border: 1px solid black; padding: 8px;">This install must be completed in line with the SWIP Solid Wall IWI system Installation guide, ensuring all thermal bridge areas are addressed and joints and seals from all adjoining walls and sills are covered with thermal laminate insulating board. Elements must incorporate cavity
+barriers at edges and openings and junctions with fire resisting elements. PVC trunking needed on cables in contact with thermal linear. Adherence to Pas Annex B BFM 8 pages 52. Also to abide by management of moisture BS5520-2021. Also abide by product BBA agreement certification 18/5506. Must also ensure that if less than 100% is being installed to follow IWI Best Practice flowchart and ensure occupier is given clear information regarding maintaining heat in all rooms to aminimum of 18 degrees and also utilize the ventilation system to reducerisk of damp and condensation and interstitial condensation.The Residual Loft install must be completed in line with CITB Loft
+Insulation Guide TRM 152-1, and all Knauf Earthwool Loft Roll 44 product data. The Post install depth should be to a minimum of 270mm.The Loft area should have EasyVent installed to provide adequate ventilation to the loft area.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">PAS2035 Compliant Design (Solar PV)</td>
+        <td style="border: 1px solid black; padding: 8px;">The Solar PV installation must follow MCS MIS3002 Issue 4 and LONGI installation guidance.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">PAS2035 Compliant Design (ASHP)</td>
+        <td style="border: 1px solid black; padding: 8px;">This install must be completed in line with MCS MIS020 and the product installation guidance from Samsung.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Ventilation Assessment (Insulation Measures)</td>
+        <td style="border: 1px solid black; padding: 8px;">An assessment of the existing ventilation system was noted during the site survey and is recorded in the Ventilation and Condition Survey and Ventilation Strategy below. In line with PAS 2035:2019, where the ventilation is deemed to be inadequate as detailed in clause C2.2. This will
+be remediated as necessary to bring into line with PAS2035:2019. For example, in all wet rooms to have mechanical ventilation installed, all habitable rooms to have background ventilation in the form of trickle
+vents installed and in all wet and habitable rooms to ensure all internal doors have sufficient undercuts at a minimum of 7600m2 to provide adequate ventilation within all rooms within the dwelling.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Condition of the Building</td>
+        <td style="border: 1px solid black; padding: 8px;">A condition survey has been completed and this suggests that the
+property is in a good state of repair and that no remedial work is required prior to the installation of the measures.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Planning Conditions</td>
+        <td style="border: 1px solid black; padding: 8px;">There are no conditions imposed by the local planning authority or the Building Control body at this property.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Products &amp; Material Specification</td>
+        <td style="border: 1px solid black; padding: 8px;">The materials and products that have been specified are compatible with
+the building and each other. The manufacturer’s instructions for all products and materials to be used during this project are referenced in
+this design document.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Moisture Management</td>
+        <td style="border: 1px solid black; padding: 8px;">It is advised to open windows regularly and ensure the property is well
+ventilated and that any ventilation equipment such as extract fans, background ventilators etc. are kept in good working order. This will help to reduce the risk of condensation and mould growth and minimise the
+negative impacts on internal air quality and occupant health.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Physical Interactions Between Measures</td>
+        <td style="border: 1px solid black; padding: 8px;">Design details for measures that physically interact are shown in the
+design details document. These are primarily taken from 'BR262 Thermal Insulation: Avoiding Risks' and must be followed to minimise thermal bridging and maintain airtightness.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Resilience to Rainwater Ingress or Flood</td>
+        <td style="border: 1px solid black; padding: 8px;">The property is in good repair, located in a moderate exposure area, and has a very low flood risk.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Fire Safety</td>
+        <td style="border: 1px solid black; padding: 8px;">The proposed measures will not compromise the fire safety of the building. The proposed measure(s) will comply with published guidance Approved Document B or BS 9999</td>
+    </tr>
+      <tr>
+        <td style="border: 1px solid black; padding: 8px;">Maintenance requirements</td>
+        <td style="border: 1px solid black; padding: 8px;">The fabric measures that are proposed have no ongoing maintenance
+requirements. Solar PV will not require any regular maintenance checks other than monitoring of performance and arranging cleaning if this begins to affect
+performance. Servicing of the installed ASHP is required annually by a suitably qualified engineer to maintain system performance and any guarantees/warranties.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Technical Standards (RIR)</td>
+        <td style="border: 1px solid black; padding: 8px;">The installer must install the measure in line with the general guidance in
+PAS2030:2019 Sections 1 to 10 and the measure specific guidance in Annex B. The installer must also ensure that guidance in the SWIP Internal wall insulation guide and the CITB Internal Wall Insulation Operative Guide is followed. The installer must also ensure that guidance in the CITB Loft Insulation Guide and the Knauf Earthwool Loft Roll 44
+Product guide is followed.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Technical Standards (Solar PV)</td>
+        <td style="border: 1px solid black; padding: 8px;">The installer must install the measure in line with the general guidance in
+PAS2030:2019 Sections 1 to 10. The installer must also ensure that guidance in the MCS standard documents MIS 3002 Issue 4.0 and the product specific guidance from Longi S is adhered too.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Technical Standards (ASHP)</td>
+        <td style="border: 1px solid black; padding: 8px;">The installer must install the measure in line with the general guidance in
+PAS2030:2019 Sections 1 to 10. The installer must also ensure that guidance in the standard Microgeneration Installations Standards:MCS
+020 and the product specific guidance provided by Samsung is adhered to.</td>
+    </tr>
 
-    <!-- Retrofit Coordinator Declaration -->
-    <div>
-        <div class="section-title">Retrofit Coordinator's Declaration</div>
-        <p>I confirm I accept the evidence provided by the Retrofit Assessor: -</p>
-        <p>I confirm that the ventilation fan has a maximum noise level of 30 dBLAeq, T: -</p>
-        <p>I confirm the whole-dwelling background ventilation rate meets the minimum low rate specified in Approved Document F: -</p>
-    </div>
+    <!-- Added Rows for Retrofit Design -->
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Sequence of Installation</td>
+        <td style="border: 1px solid black; padding: 8px;">In line with the principles and guidelines of PAS2035, projects are always
+considered in a Fabric-First approach, followed by upgrading existing services and then finally looking at any potential renewable upgrades. Therefore, the Internal Wall Insulation will be carried out first then the Air Source Heat Pump, Heating Controls and Solar PV. This will complete the first phase of the whole-house retrofit plan. The other measures identified in the Medium Term Improvement Plan will then be installed in the following order; Fabric and air-tightness measures, building services and then any renewables if applicable.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Handover (All Measures)</td>
+        <td style="border: 1px solid black; padding: 8px;">All installed measures must be physically inspected, and their function
+and operation explained to the occupants.</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;">Handover (Extract Ventilation)</td>
+        <td style="border: 1px solid black; padding: 8px;">Information to be provided regarding the cleaning and replacement of air
+filters in mechanical ventilation systems and the consequences of switching off or disabling any installed ventilation systems will be
+discussed with the occupants.</td>
+</tr>
 
-    <!-- Ventilation Survey Table -->
-    <div>
-        <div class="section-title">Ventilation Survey</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Location</th>
-                    <th>MEV</th>
-                    <th>Background</th>
-                    <th>Undercut</th>
-                    <th>Purge</th>
-                    <th>Other</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Kitchen</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Living Room</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <!-- Add other rooms here -->
-            </tbody>
-        </table>
-    </div>
+ <tr>
+        <td style="border: 1px solid black; padding: 8px;">Conflict of Interest Statement</td>
+        <td style="border: 1px solid black; padding: 8px;">I the undersigned, in my capacity as Retrofit Coordinator for this project,
+hereby confirm that there is no conflict of interest with any parties
+involved with this project that would prevent me from fulfilling my role in
+accordance with PAS2035:2019+A1:2022.</td>
+    </tr>
+  
+<!-- Liaison with Retrofit Installer -->
+    <tr>
+        <td style="border: 1px solid black; padding: 8px;" rowspan="1">Liaison with Retrofit Installer</td>
+          <td style="border: 1px solid black; padding: 8px;">Assessment and Handover Documents</td>
+        <td style="border: 1px solid black; padding: 8px;">The Retrofit Installer will be provided with a copy of the retrofit
+assessment and the retrofit design.</td>
+    </tr>
+   
+   
+</table> 
+</div>
+
+<!-- Ventilation Strategy -->
+    <div class="section-title">Ventilation Strategy</div>
+    
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
+        <tr>
+            <th style="border: 1px solid black; padding: 8px;">Assessment Criteria</th>
+            <th style="border: 1px solid black; padding: 8px;">Details</th>
+            <th style="border: 1px solid black; padding: 8px;">Action Required</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Is there evidence of condensation and/or mould growth in the dwelling?</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">None</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Is there a complete ventilation system as detailed in PAS2030:2019 (C2,2)?</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">Install mechanical ventilation in wet rooms and background ventilation in habitable rooms (trickle vents).</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Are there undercuts of at least 7600mm² beneath all internal doors?</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">None</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Is there a provision for purge ventilation in every habitable room (i.e., openable windows)?</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">None</td>
+        </tr>
+    </table>
 
     <!-- Retrofit Ventilation Upgrades -->
+    <div class="section-title">Retrofit Ventilation Upgrades</div>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
+        <tr>
+            <th style="border: 1px solid black; padding: 8px;">Overall Ventilation Strategy</th>
+            <td style="border: 1px solid black; padding: 8px;">In line with PAS 2035:2019, Were the ventilation is deemed to be inadequate as detailed in clause C2.2. This will be
+remediated as necessary to bring into line with PAS2035:2019. For example, in all wet rooms to have mechanical ventilation installed, all habitable rooms to have background ventilation in the form of trickle vents installed and in all wet and habitable rooms to ensure all internal doors have sufficient undercuts at a minimum of 7600m2 to
+provide adequate ventilation within all rooms within the dwelling..
+            </td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid black; padding: 8px;">Ventilation Designer (VeD)</th>
+            <td style="border: 1px solid black; padding: 8px;">
+                South Coast Insulation Services the VeD take full responsibility to ensure there is no risk of mould or damp, and sufficient ventilation exists or will be installed by the Customer or South Coast Insulation Services Ltd before any of the Measures are installed and evidence will be provided with each photo showing the location, dated, and room on it. Also, South Coast Insulation Services Ltd or someone on their behalf will provide calculations if applicable for
+confirmation the ventilation installed will meet PA S2035 to the requirements adequate ventilation.
+            </td>
+        </tr>
+    </table>
+    
+      <div class="section-title">Please Note : Purge Ventilation on its own does not constitute an adequate ventilation system</div>
+   <div>
+  <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
+        <tr>
+            <th style="border: 1px solid black; padding: 8px;" rowspan="5">Retrofit Coordinators' Declarations</th>
+            <td style="border: 1px solid black; padding: 8px;">I have received confirmation from a qualified Retrofit Assessor that the
+existing Mechanical ventilation fans have a maximum noise level of 30dBLAeq, T or 30dBLAeq, T for background mode for continuous systems</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">I confirm the whole-dwelling background ventilation rate is equivalent to at least the Minimum low rate of whole dwelling ventilation specified in
+Approved Document F, assuming occupancy equal to the number of bed spaces in the dwelling</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">I confirm that ventilation system design includes calculations provided by
+a technical consultant, specialist designer or the supplier of the system, to demonstrate the whole-dwelling ventilation rates are provided by the
+equipment proposed.</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">I confirm that any additional ventilation will be installed by operatives
+holding suitable qualifications identified in the Register of Regulated Qualifications maintained by Ofqual for England (and by its equivalents for devolved nations) and approved by the manufacturer or supplier of the
+system.</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">The Supply air requirements for combustion appliances (Boiler, Wood Stoven Fireplace, Gas Fire etc) are met, Part J of Building Regulations
+(Section 2,3 and 4.)</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+        </tr>
+    </table>
+</div>
+
+    <!-- Existing Ventilation as Captured -->
+    <div class="section-title">Existing Ventilation as Captured</div>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
+        <tr>
+            <th style="border: 1px solid black; padding: 8px;">Location</th>
+            <th style="border: 1px solid black; padding: 8px;">MEV</th>
+            <th style="border: 1px solid black; padding: 8px;">Background</th>
+            <th style="border: 1px solid black; padding: 8px;">Undercut</th>
+            <th style="border: 1px solid black; padding: 8px;">Purge</th>
+            <th style="border: 1px solid black; padding: 8px;">Other (Description)</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Kitchen</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">Trickle vents required</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Living Room</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">Trickle vents required</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Bathroom</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">MEV to be fitted</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Bedroom 1</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Trickle vents required</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Bedroom 2</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Trickle vents required</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Bedroom 3</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Trickle vents required</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Bedroom 4</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Trickle vents required</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">Dining Room</td>
+            <td style="border: 1px solid black; padding: 8px;">No</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">Trickle vents required</td>
+        </tr>
+    </table>
+
+    <!-- MEV and Trickle Vents -->
     <div>
-        <div class="section-title">Retrofit Ventilation Upgrades</div>
-        <p><strong>Overall Ventilation Strategy:</strong> -</p>
-        <p>All wet rooms to have mechanical ventilation installed, background ventilation for habitable rooms, and sufficient undercuts for internal doors (7600mm²).</p>
+        <p>A MEV (Mechanical Extract Ventilation) system will be installed in the Kitchen, Bathrooms, WC, and trickle vents will be required for windows. These will be fitted before the installation of the fabric measures. Evidence of their installation will be uploaded to Trustmark.</p>
     </div>
+    
 
 </body>
-</html>
 
 </apex:page>

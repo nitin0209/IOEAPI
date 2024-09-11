@@ -1,37 +1,32 @@
 <template>
     <lightning-card >
-        <lightning-tabset variant="scoped" class="slds-p-around_medium" active-tab-value="images" onactive={handleTabChange}>
-            
+        <lightning-tabset variant="scoped" active-tab-value="documents" onactive={handleTabChange}>
+
             <!-- Documents Tab -->
             <lightning-tab label="Documents" value="documents">
                 <template if:true={documentFiles.length}>
                     <lightning-tabset variant="scoped">
                     <template for:each={documentFiles} for:item="file">
                         <lightning-tab key={file.id} label={file.title}>
-                        <div key={file.id} class="slds-m-around_xx-small">
+                        <div key={file.id} >
                             <iframe src={file.contentUrl} 
-                                    class="document-preview"
                                     width="100%"
                                     height="600px"
                                     style="border: none;"
                                     title={file.title} 
-                            ></iframe>
+                                    class="document-preview">
+                            </iframe>
                         </div>
-                        
                     </lightning-tab>
                     </template>
                 </lightning-tabset>
                 </template>
-
-             
-
                 <template if:true={noDocumentFiles}>
                     <p>No documents found.</p>
                 </template>
             </lightning-tab>
-
-               <!-- Images Tab -->
-               <lightning-tab label="Images" value="images">
+            <!-- Images Tab -->
+            <lightning-tab label="Images" value="images">
                 <template if:true={imageFiles.length}>
                     <lightning-tabset variant="scoped">
                     <template for:each={imageFiles} for:item="file">
@@ -43,11 +38,12 @@
                     </template>
                 </lightning-tabset>
                 </template>
-            
                 <template if:true={noImageFiles}>
                     <p>No images found.</p>
                 </template>
             </lightning-tab>
+
+            
         </lightning-tabset>
     </lightning-card>
 </template>

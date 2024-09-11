@@ -1,28 +1,32 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
+import fetchLatestResponse from '@salesforce/apex/scisIOEResponseHandler.fetchLatestResponse'; // Import the Apex method
 
 export default class ImprovementOptions extends LightningElement {
-    improvementOptions = [
-        { id: 1, name: 'Cavity wall insulation' },
-        { id: 2, name: 'Centralized mechanical extract ventilation' },
-        { id: 3, name: 'Decentralized mechanical extract ventilation' },
-        { id: 4, name: 'Flat roof insulation' },
-        { id: 5, name: 'Loft Insulation (between and over ceiling joists)' },
-        { id: 6, name: 'Loft Insulation (between and under/over rafters)' },
-        { id: 7, name: 'Mechanical Ventilation with Heat Recovery (MVHR)' },
-        { id: 8, name: 'Party cavity wall insulation' },
-        { id: 9, name: 'Passive stack ventilation' },
-        { id: 10, name: 'Pitched Roof Insulation' },
-        { id: 11, name: 'Positive input ventilation' },
-        { id: 12, name: 'Room-in-roof insulation' }
-    ];
+    @track improvementOptions = []; // Track the improvement options for dynamic rendering
 
-    handlePackageAction(event) {
-        const selectedImprovement = event.target.closest('.improvement-item').querySelector('.improvement-title').textContent;
-        console.log('Add to package clicked for:', selectedImprovement);
-        // Implement your logic for adding to package
+    // Call Apex method to fetch the improvement options on component initialization
+    connectedCallback() {
+        this.fetchImprovementOptions();
     }
 
-    handleHideClick() {
+    // Fetch improvement options from the server
+    fetchImprovementOptions() {
+        fetchLatestResponse()
+            .then(result => {
+                // Parse the response and assign it to the improvementOptions array
+                if (result) {
+                    let responseJson = JSON.parse(result.Response_Body__c);
+                    this.improvementOptions = responseJson.recommendations || [];
+                    console.log('Improvement Options:', this.improvementOptions);
+                } else {
+                    console.error('No recommendations found in response');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching improvement options:', error);
+            });
+    }
+    handleBackClick() {
         const hideImprovementOptionsEvent = new CustomEvent('hideimprovementoptions');
         this.dispatchEvent(hideImprovementOptionsEvent);
     }

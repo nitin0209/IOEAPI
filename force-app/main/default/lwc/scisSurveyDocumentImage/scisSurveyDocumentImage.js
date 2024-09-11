@@ -7,13 +7,12 @@ export default class DocumentImageTabset extends LightningElement {
     @track documentFiles = [];
     noImageFiles = false;
     noDocumentFiles = false;
-    activeTabValue = 'documents'; // Set default active tab to 'documents'
 
     connectedCallback() {
-        // Fetch and display document files first
-        this.fetchFiles(false);
-        // Fetch and display image files afterward
+        // Fetch and display image files
         this.fetchFiles(true);
+        // Fetch and display document files
+        this.fetchFiles(false);
     }
 
     fetchFiles(isImage) {
@@ -22,7 +21,7 @@ export default class DocumentImageTabset extends LightningElement {
                 const files = Object.keys(result).map((key) => ({
                     id: key,
                     title: result[key],
-                    contentUrl: `/sfc/servlet.shepherd/version/download/${key}`, // Generates the URL to access the content
+                    contentUrl: `/sfc/servlet.shepherd/version/download/${key}` // Generates the URL to access the content
                 }));
                 if (isImage) {
                     this.imageFiles = files;
@@ -44,7 +43,7 @@ export default class DocumentImageTabset extends LightningElement {
 
     handleTabChange(event) {
         // Optional: handle actions when switching between tabs
-        this.activeTabValue = event.target.value;
-        console.log('Active Tab:', this.activeTabValue);
+        const activeTab = event.target.value;
+        console.log('Active Tab:', activeTab);
     }
 }

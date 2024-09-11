@@ -7,7 +7,6 @@
         </div>
     </lightning-card>
 
-
     <!-- Improvement Optioneering card -->
     <lightning-card title="Improvement Optioneering" class="card-container">
         <div class="slds-box slds-theme_default">
@@ -20,7 +19,6 @@
                 readonly
             ></lightning-input>
 
-
             <!-- Current total fuel costs (£/yr) -->
             <lightning-input
                 label="Current total fuel costs (£/yr)"
@@ -29,7 +27,6 @@
                 class="input-field"
                 readonly
             ></lightning-input>
-
 
             <!-- Current CO2 emissions (CO2kg/yr) -->
             <lightning-input
@@ -40,7 +37,6 @@
                 readonly
             ></lightning-input>
 
-
             <!-- Current Energy Rating -->
             <lightning-input
                 label="Current Energy Rating"
@@ -50,7 +46,6 @@
                 readonly
             ></lightning-input>
 
-
             <!-- Current space heating demand (kWh/m2/year) -->
             <lightning-input
                 label="Current space heating demand (kWh/m2/year)"
@@ -59,9 +54,7 @@
                 class="input-field"
                 readonly
             ></lightning-input>
-            
         </div>
-
 
         <!-- Recommendations section -->
         <template if:true={recommendations}>
@@ -72,18 +65,25 @@
                         <p><strong>Name:</strong> {recommendation.name}</p>
                         <p><strong>Description:</strong> {recommendation.text}</p>
                         <p><strong>Result:</strong> {recommendation.result}</p>
+                        <p><strong>Is Enabled:</strong> {recommendation.isEnabled}</p>
+                        <p><strong>Is Visible:</strong> {recommendation.isVisible}</p>
+                        <p><strong>Is Checked:</strong> {recommendation.isChecked}</p>
+                        <p><strong>Short Text:</strong> {recommendation.shortText}</p>
+                        <p><strong>Savings Cost:</strong> {recommendation.savingCost}</p>
+                        <p><strong>SAP Band:</strong> {recommendation.saPband}</p>
+                        <p><strong>SAP Rating:</strong> {recommendation.saPrating}</p>
+                        <p><strong>CO2 Emissions Change:</strong> {recommendation.cO2emissionsChange}</p>
+                        <p><strong>eIrating:</strong> {recommendation.eIrating}</p>
                     </div>
                 </template>
             </div>
         </template>
-
 
         <!-- Optioneering section -->
         <div onclick={handleOptioneeringClick} style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border: 1px solid #d8dde6; border-radius: 5px; margin-top: 20px; cursor: pointer;">
             <span>Optioneering</span>
             <lightning-icon icon-name="utility:chevronright" size="small" alternative-text="Right Arrow"></lightning-icon>
         </div>
-
 
         <!-- Save Package Data Button -->
         <lightning-button label="Save Package Data" onclick={handleSavePackageData} variant="brand" class="slds-m-top_medium"></lightning-button>

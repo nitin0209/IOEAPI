@@ -46,20 +46,7 @@ public class scisIOEResponseHandler {
                 Decimal primaryEnergy = responseMap.containsKey('primaryEnergy') ? (Decimal)responseMap.get('primaryEnergy') : null;
                 Decimal totalCost = responseMap.containsKey('totalCost') ? (Decimal)responseMap.get('totalCost') : null;
                 Decimal Result = responseMap.containsKey('Result') ? (Decimal)responseMap.get('Result') : null;
-                
 
-                // Assuming that 'recommendations[0]' has the text and result fields
-                //Map<String, Object> recommendation = ((List<Map<String, Object>>)responseMap.get('recommendations'))[0];
-                //String name = recommendation.containsKey('name') ? (String)recommendation.get('name') : null;
-               // String text = recommendation.containsKey('text') ? (String)recommendation.get('text') : null;
-               // Decimal result = recommendation.containsKey('result') ? (Decimal)recommendation.get('result') : null;
-                
-                // Log the extracted data
-                /*System.debug('Extracted eiRating: ' + eiRating);
-                System.debug('Extracted Space Heating Demand: ' + spaceHeatingDemand);
-                System.debug('Extracted Name: ' + name);
-                System.debug('Extracted Text: ' + text);
-                System.debug('Extracted Result: ' + result);*/
 
                 // Create and insert a new IOE_Response__c record with the extracted data
                 IOE_Response__c responseRecord = new IOE_Response__c();
@@ -93,12 +80,42 @@ public class scisIOEResponseHandler {
     @AuraEnabled
 public static void savePackageData(List<Map<String, Object>> recommendationData) {
     try {
-        List<Package__c> packageRecords = new List<Package__c>();
-
+        // Collect the names or unique identifiers of the incoming recommendations
+        Set<String> recommendationNames = new Set<String>();
         for (Map<String, Object> recommendation : recommendationData) {
-            Package__c packageRecord = new Package__c();
-            
-            // Extract and map fields from each recommendation
+            if (recommendation.containsKey('name')) {
+                recommendationNames.add((String) recommendation.get('name'));
+            }
+        }
+
+        // Query existing package records based on the unique identifier (e.g., Name)
+        List<Package__c> existingPackages = [
+            SELECT Id, Name 
+            FROM Package__c 
+            WHERE Name IN :recommendationNames
+        ];
+
+        Map<String, Package__c> existingPackageMap = new Map<String, Package__c>();
+        for (Package__c packageRecord : existingPackages) {
+            existingPackageMap.put(packageRecord.Name, packageRecord);
+        }
+
+        List<Package__c> packagesToUpdate = new List<Package__c>();
+        List<Package__c> packagesToInsert = new List<Package__c>();
+
+        // Loop through the incoming recommendation data
+        for (Map<String, Object> recommendation : recommendationData) {
+            Package__c packageRecord;
+            String packageName = (String) recommendation.get('name');
+
+            // Check if the package already exists
+            if (existingPackageMap.containsKey(packageName)) {
+                packageRecord = existingPackageMap.get(packageName); // Get the existing package
+            } else {
+                packageRecord = new Package__c(); // Create a new package record if it doesn't exist
+            }
+
+            // Update the package fields with new data
             if (recommendation.containsKey('name')) {
                 packageRecord.Name = (String) recommendation.get('name');
             }
@@ -108,22 +125,71 @@ public static void savePackageData(List<Map<String, Object>> recommendationData)
             if (recommendation.containsKey('result')) {
                 packageRecord.Result__c = (Decimal) recommendation.get('result');
             }
+            if (recommendation.containsKey('isEnabled')) {
+                packageRecord.isEnabled__c = (Boolean) recommendation.get('isEnabled'); 
+            }
+            if (recommendation.containsKey('isVisible')) {
+                packageRecord.isVisible__c = (Boolean) recommendation.get('isVisible'); 
+            }
+            if (recommendation.containsKey('isChecked')) {
+                packageRecord.isChecked__c = (Boolean) recommendation.get('isChecked'); 
+            }
+            if (recommendation.containsKey('shortText')) {
+                packageRecord.shortText__c = (String) recommendation.get('shortText');
+            }
+            if (recommendation.containsKey('savingCost')) {
+                packageRecord.savingCost__c = (Decimal) recommendation.get('savingCost');
+            }
+            if (recommendation.containsKey('saPband')) {
+                packageRecord.SAP_Band__c = (String) recommendation.get('saPband');
+            }
+            if (recommendation.containsKey('saPrating')) {
+                packageRecord.SAP_Rating__c = (Decimal) recommendation.get('saPrating');
+            }
+            if (recommendation.containsKey('cO2emissionsChange')) {
+                packageRecord.cO2_Emissions_Change__c = (Decimal) recommendation.get('cO2emissionsChange');
+            }
+            if (recommendation.containsKey('eIrating')) {
+                packageRecord.EI_Rating__c = (Decimal) recommendation.get('eIrating');
+            }
 
-            // Add the record to the list
-            packageRecords.add(packageRecord);
+            // Add the package to the appropriate list
+            if (existingPackageMap.containsKey(packageName)) {
+                packagesToUpdate.add(packageRecord); // Add to update list if it already exists
+            } else {
+                packagesToInsert.add(packageRecord); // Add to insert list if it's new
+            }
         }
 
-        // Insert the records into Salesforce
-        if (!packageRecords.isEmpty()) {
-            insert packageRecords;
+        // Insert new records if any
+        if (!packagesToInsert.isEmpty()) {
+            insert packagesToInsert;
+            System.debug('Inserted ' + packagesToInsert.size() + ' new package records.');
         }
 
-        System.debug('Package records inserted successfully.');
+        // Update existing records if any
+        if (!packagesToUpdate.isEmpty()) {
+            update packagesToUpdate;
+            System.debug('Updated ' + packagesToUpdate.size() + ' existing package records.');
+        }
+
     } catch (DmlException e) {
         throw new AuraHandledException('Error saving package data: ' + e.getMessage());
     } catch (Exception e) {
         throw new AuraHandledException('Unexpected error: ' + e.getMessage());
     }
 }
+
+    
+    //to add medium term plan component
+    @AuraEnabled(cacheable=true)
+public static IOE_Response__c fetchLatestResponse() {
+    List<IOE_Response__c> responseList = [SELECT Response_Body__c FROM IOE_Response__c ORDER BY CreatedDate DESC LIMIT 1];
+    if (responseList.size() > 0) {
+        return responseList[0];
+    }
+    return null;
+}
+
 
 }

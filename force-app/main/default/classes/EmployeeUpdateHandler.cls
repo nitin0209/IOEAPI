@@ -53,19 +53,9 @@ public class EmployeeUpdateHandler {
         }
             Update userLogingDetailsToBeUpdated;
             Update installerListToBeUpdated;
-            
-            
-            
+                        
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
+         
     }
 
 }
