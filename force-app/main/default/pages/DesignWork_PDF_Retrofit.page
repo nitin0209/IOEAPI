@@ -2,9 +2,15 @@
 
 <body>
 <!-- Logo section -->
-<div style="text-align: center; margin-bottom: 20px;">
-        <img src="{!URLFOR($Resource.SCISLogoImg)}" alt="South Coast Insulation Services Logo"  />
-    </div>
+<div style="position: absolute; top: 0; right: 0;padding: 0; margin: 0;">
+    <img src="{!URLFOR($Resource.SCISLogoImg)}" alt="South Coast Insulation Services Logo" style="width: 450px; height: auto;" />
+</div>
+
+<br></br><br></br><br></br><br></br>
+
+
+
+
    <!-- Project Details -->
     <div>
         <table style="width: 50%; border-collapse: collapse; margin-bottom: 5px; border: 1px solid black;">
@@ -183,10 +189,15 @@ assessment and the retrofit design.</td>
    
 </table> 
 </div>
+<br></br><br></br>
+
 
 <!-- Ventilation Strategy -->
-    <div class="section-title">Ventilation Strategy</div>
-    
+   <div class="section-title" style="text-align: center;font-weight: bold; text-decoration: underline;">Ventilation Strategy</div>
+<br></br>
+
+
+<div class="section-title">Assessment of Existing Ventilation Agreements</div>
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
         <tr>
             <th style="border: 1px solid black; padding: 8px;">Assessment Criteria</th>
@@ -195,23 +206,23 @@ assessment and the retrofit design.</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 8px;">Is there evidence of condensation and/or mould growth in the dwelling?</td>
-            <td style="border: 1px solid black; padding: 8px;">No</td>
-            <td style="border: 1px solid black; padding: 8px;">None</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.EV_Is_the_damp_or_mold_present__c}</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.EV_Action_Required_for_damp__c}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 8px;">Is there a complete ventilation system as detailed in PAS2030:2019 (C2,2)?</td>
-            <td style="border: 1px solid black; padding: 8px;">No</td>
-            <td style="border: 1px solid black; padding: 8px;">Install mechanical ventilation in wet rooms and background ventilation in habitable rooms (trickle vents).</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.EV_Do_you_have_ventilation_installed__c}</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.EV_Action_Required_for_ventilation__c}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 8px;">Are there undercuts of at least 7600mm² beneath all internal doors?</td>
-            <td style="border: 1px solid black; padding: 8px;">Yes</td>
-            <td style="border: 1px solid black; padding: 8px;">None</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.EV_Is_there_sufficient_undercut__c}</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.EV_Action_required_for_undercut__c}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 8px;">Is there a provision for purge ventilation in every habitable room (i.e., openable windows)?</td>
-            <td style="border: 1px solid black; padding: 8px;">Yes</td>
-            <td style="border: 1px solid black; padding: 8px;">None</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.EV_Is_window_open_for_purge_ventilation__c}</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.EV_Action_required_for_purge__c}</td>
         </tr>
     </table>
 
@@ -220,15 +231,16 @@ assessment and the retrofit design.</td>
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
         <tr>
             <th style="border: 1px solid black; padding: 8px;">Overall Ventilation Strategy</th>
-            <td style="border: 1px solid black; padding: 8px;">In line with PAS 2035:2019, Were the ventilation is deemed to be inadequate as detailed in clause C2.2. This will be
-remediated as necessary to bring into line with PAS2035:2019. For example, in all wet rooms to have mechanical ventilation installed, all habitable rooms to have background ventilation in the form of trickle vents installed and in all wet and habitable rooms to ensure all internal doors have sufficient undercuts at a minimum of 7600m2 to
-provide adequate ventilation within all rooms within the dwelling..
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.VU_Advisory_notes__c}
             </td>
         </tr>
         <tr>
             <th style="border: 1px solid black; padding: 8px;">Ventilation Designer (VeD)</th>
             <td style="border: 1px solid black; padding: 8px;">
-                South Coast Insulation Services the VeD take full responsibility to ensure there is no risk of mould or damp, and sufficient ventilation exists or will be installed by the Customer or South Coast Insulation Services Ltd before any of the Measures are installed and evidence will be provided with each photo showing the location, dated, and room on it. Also, South Coast Insulation Services Ltd or someone on their behalf will provide calculations if applicable for
+                South Coast Insulation Services the VeD take full responsibility to ensure there is no risk of mould or damp, and
+sufficient ventilation exists or will be installed by the Customer or South Coast Insulation Services Ltd before any of
+the Measures are installed and evidence will be provided with each photo showing the location, dated, and room
+on it. Also, South Coast Insulation Services Ltd or someone on their behalf will provide calculations if applicable for
 confirmation the ventilation installed will meet PA S2035 to the requirements adequate ventilation.
             </td>
         </tr>
@@ -241,35 +253,38 @@ confirmation the ventilation installed will meet PA S2035 to the requirements ad
             <th style="border: 1px solid black; padding: 8px;" rowspan="5">Retrofit Coordinators' Declarations</th>
             <td style="border: 1px solid black; padding: 8px;">I have received confirmation from a qualified Retrofit Assessor that the
 existing Mechanical ventilation fans have a maximum noise level of 30dBLAeq, T or 30dBLAeq, T for background mode for continuous systems</td>
-            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.D_Confirm_ventilation_max_noise_level_30__c}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 8px;">I confirm the whole-dwelling background ventilation rate is equivalent to at least the Minimum low rate of whole dwelling ventilation specified in
 Approved Document F, assuming occupancy equal to the number of bed spaces in the dwelling</td>
-            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.D_Confirm_that_ventilation_system_sized__c}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 8px;">I confirm that ventilation system design includes calculations provided by
 a technical consultant, specialist designer or the supplier of the system, to demonstrate the whole-dwelling ventilation rates are provided by the
 equipment proposed.</td>
-            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.D_Confirm_design_includes_calculations__c}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 8px;">I confirm that any additional ventilation will be installed by operatives
 holding suitable qualifications identified in the Register of Regulated Qualifications maintained by Ofqual for England (and by its equivalents for devolved nations) and approved by the manufacturer or supplier of the
 system.</td>
-            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.D_Confirm_that_ventilation_system_instle__c}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 8px;">The Supply air requirements for combustion appliances (Boiler, Wood Stoven Fireplace, Gas Fire etc) are met, Part J of Building Regulations
 (Section 2,3 and 4.)</td>
-            <td style="border: 1px solid black; padding: 8px;">Yes</td>
+            <td style="border: 1px solid black; padding: 8px;">{!Designwork4.D_Confirm_ventilation_all_fans__c}</td>
         </tr>
     </table>
 </div>
 
+<br></br> <br></br>
+
     <!-- Existing Ventilation as Captured -->
-    <div class="section-title">Existing Ventilation as Captured</div>
+     <div class="section-title" style="text-align: center;font-weight: bold;  text-decoration: underline;">Existing Ventilation as Captured</div>
+     <br></br> <br></br>
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
         <tr>
             <th style="border: 1px solid black; padding: 8px;">Location</th>
@@ -346,9 +361,13 @@ system.</td>
     </table>
 
     <!-- MEV and Trickle Vents -->
-    <div>
-        <p>A MEV (Mechanical Extract Ventilation) system will be installed in the Kitchen, Bathrooms, WC, and trickle vents will be required for windows. These will be fitted before the installation of the fabric measures. Evidence of their installation will be uploaded to Trustmark.</p>
-    </div>
+   <div style="text-align: center;">
+    A MEV within Kitchen, Bathrooms, WC and all windows will require Trickle Vents to the required
+    size/number will need to be fitted as part of Retrofit Design and before the installation of the fabric
+    measure(s) are installed. Evidence will need to be uploaded to Trustmark to show these have been
+    installed.
+</div>
+
     
 
 </body>

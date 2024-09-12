@@ -1,4 +1,5 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
+import { CurrentPageReference } from 'lightning/navigation'; // Import CurrentPageReference to get the current page context
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import fetchLatestResponse from '@salesforce/apex/IOEResponseController.fetchLatestResponse';
 import makeHttpPostRequest from '@salesforce/apex/scisIOEResponseHandler.makeHttpPostRequest';
@@ -12,6 +13,15 @@ export default class Optioneering extends LightningElement {
     @track co2Emissions;
     @track spaceHeatingDemand;
     @track recommendations = []; // Track recommendations
+    @track surveyId; // To hold the dynamic surveyId
+
+    // Use wire to get the current page reference and extract the recordId
+    @wire(CurrentPageReference)
+getPageRef(pageRef) {
+    this.surveyId = pageRef?.attributes?.recordId; // Extract the recordId from attributes, not state
+    console.log('Current surveyId:', this.surveyId);
+}
+
 
     // Fetches the latest response from Salesforce and parses it
     handleFetch() {
@@ -52,9 +62,15 @@ export default class Optioneering extends LightningElement {
             });
     }
 
-    // Method to call the Apex makeHttpPostRequest method with toast messages
+    // Method to call the Apex makeHttpPostRequest method with toast messages and dynamic surveyId
     handleMakeHttpPostRequest() {
-        makeHttpPostRequest()
+        if (!this.surveyId) {
+        console.error('Survey ID not found. Ensure the recordId is present in the URL.');
+        this.showToast('Error', 'Survey ID not found', 'error');
+        return;
+    }
+
+        makeHttpPostRequest({ surveyId: this.surveyId }) // Pass the surveyId dynamically
             .then(response => {
                 if (response) {
                     console.log('HTTP POST request response:', response);

@@ -48,7 +48,8 @@ global with sharing class FileUploadToSurveyRest {
                                                     FROM ContentDocumentLink 
                                                     WHERE LinkedEntityId = :surveyId
                                                     AND ContentDocument.FileType =: fileType 
-                                                    AND (NOT(ContentDocument.Title LIKE '%other_%')) WITH SECURITY_ENFORCED]; //AND ContentDocument.FileType ='jpg'];
+                                                    AND (NOT(ContentDocument.Title LIKE '%other_%')) 
+                                                    AND ContentDocument.Title LIKE: '%'+imageName +'%'    WITH SECURITY_ENFORCED]; //AND ContentDocument.FileType ='jpg'];
 
                         system.debug('contentDocumentLinksToDelete = '+ contentDocumentLinksToDelete);
                     }

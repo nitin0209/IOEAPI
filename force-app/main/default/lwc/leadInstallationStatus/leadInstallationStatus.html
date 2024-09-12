@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Leads with Installation Status">
+        <template if:true={leads}>
+            <lightning-datatable
+                key-field="leadId"
+                data={leads}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+    </lightning-card>
+</template>

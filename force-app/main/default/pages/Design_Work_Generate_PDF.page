@@ -74,7 +74,7 @@
                 <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid black;">
                     <tr>
                         <th style="border: 1px solid black; padding: 6px;">Room</th>
-                        <th style="border: 1px solid black; padding: 6px;">{!highRate}</th>
+                        <th style="border: 1px solid black; padding: 6px;">HighRate</th>
                     </tr>
                     <tr>
                         <td style="border: 1px solid black; padding: 6px;">Kitchen</td>
@@ -82,7 +82,7 @@
                     </tr>
                     <tr>
                         <td style="border: 1px solid black; padding: 6px;">Bathroom</td>
-                        <td style="border: 1px solid black; padding: 6px;">-</td>
+                        <td style="border: 1px solid black; padding: 6px;">{!highRate}</td>
                     </tr>
                 </table>
             </div>

@@ -1,3 +1,14 @@
+/***************************************************************************************************************************************************
+ 
+* Title: SCIS Survey File Controller
+ * Developer: Nitin Mane
+ * Date: 11th September 2024
+ * Description: This class fetches related files (images or PDFs) by a given parent record ID.
+ *              It gathers child record IDs from various custom objects linked to the Survey record
+ *              and retrieves the relevant ContentDocumentLinks and ContentVersions based on the specified file type.
+ * 
+ *****************************************************************************************************************************************************/
+
 public with sharing class SCISSurveyFileController {
     @AuraEnabled(cacheable=true)
     public static Map<ID, String> getRelatedFilesByRecordId(String parentRecordId, Boolean isImage) {
