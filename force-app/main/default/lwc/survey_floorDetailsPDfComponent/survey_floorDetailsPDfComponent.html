@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="" icon-name="">
+        <template if:true={pdfUrl}>
+            <iframe src={pdfUrl} width="100%" height="600px"></iframe>
+        </template>
+
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+
+        <template if:true={loading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+    </lightning-card>
+</template>

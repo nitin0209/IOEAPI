@@ -12,9 +12,9 @@
                 IMPROVEMENT OPTION EVALUATION
             </div>
             <div style="margin-left:">
-                <p><strong>Date:</strong> 07/06/2024</p>
+                <p><strong>Date:</strong> {!Designwork3.Date__c}</p>
                 <p><strong>Address:</strong>{!Address}</p>
-                <p><strong>Project reference:</strong> PAS-6789</p>
+                <p><strong>Project reference:</strong>{!Designwork3.Project_Reference__c}</p>
                 <p>The improvement option evaluation has been produced by Antony Gillanders on behalf of the approved installation company. This document contains information and guidance regarding the improvements that are planned to increase the energy efficiency of your home and additional improvements that could be explored in the future.</p>
             </div>
         </div>
@@ -25,14 +25,14 @@
                 Unimproved Dwelling
             </div>
             <div style="margin-left:">
-                <p><strong>Current SAP rating:</strong> 68</p>
+                <p><strong>Current SAP rating:</strong> {!currentSapRating}</p>
                 <p><strong>Current environmental impact rating:</strong> 67</p>
                 <p><strong>Current fuel cost:</strong> 907</p>
                 <p><strong>Current total delivered energy:</strong> 12094</p>
                 <p><strong>Current total fuel costs:</strong> 907</p>
-                <p><strong>Current CO2 emissions:</strong> 2131.5</p>
+                <p><strong>Current CO2 emissions:</strong> {!sapCO2Emissions}</p>
                 <p><strong>Current energy rating:</strong> 68</p>
-                <p><strong>Current space heating demand:</strong> 253.44</p>
+                <p><strong>Current space heating demand:</strong> {!spaceHeatingDemand}</p>
             </div>
         </div>
 
@@ -60,12 +60,12 @@
                         <tr>
                             <td style="border: 1px solid black; padding: 5px;">Cavity wall insulation</td>
                             <td style="border: 1px solid black; padding: 5px;">71</td>
-                            <td style="border: 1px solid black; padding: 5px;">1,500.00</td>
-                            <td style="border: 1px solid black; padding: 5px;">157.00</td>
-                            <td style="border: 1px solid black; padding: 5px;">9.55</td>
-                            <td style="border: 1px solid black; padding: 5px;">6,594.00</td>
-                            <td style="border: 1px solid black; padding: 5px;">62.64</td>
-                            <td style="border: 1px solid black; padding: 5px;">-81.32</td>
+                            <td style="border: 1px solid black; padding: 5px;">{!capitalCost}</td>
+                            <td style="border: 1px solid black; padding: 5px;">{!annualFuelSavings}</td>
+                            <td style="border: 1px solid black; padding: 5px;">{!simplepayback}</td>
+                            <td style="border: 1px solid black; padding: 5px;">{!lifetimeFuelSavings}</td>
+                            <td style="border: 1px solid black; padding: 5px;">{!lifetimeCO2Savings}</td>
+                            <td style="border: 1px solid black; padding: 5px;">{!carbonScoreEffect}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -91,27 +91,27 @@
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 5px;">Capital cost</td>
-            <td style="border: 1px solid black; padding: 5px;">1,500.00</td>
+            <td style="border: 1px solid black; padding: 5px;">{!capitalCost}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 5px;">Annual fuel saving</td>
-            <td style="border: 1px solid black; padding: 5px;">157.00</td>
+            <td style="border: 1px solid black; padding: 5px;">{!annualFuelSavings}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 5px;">Simple payback</td>
-            <td style="border: 1px solid black; padding: 5px;">9.55</td>
+            <td style="border: 1px solid black; padding: 5px;">{!simplepayback}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 5px;">Lifetime fuel saving</td>
-            <td style="border: 1px solid black; padding: 5px;">6,594.00</td>
+            <td style="border: 1px solid black; padding: 5px;">{!lifetimeFuelSavings}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 5px;">Lifetime CO2 saving</td>
-            <td style="border: 1px solid black; padding: 5px;">62.64</td>
+            <td style="border: 1px solid black; padding: 5px;">{!lifetimeCO2Savings}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 5px;">Carbon cost effectiveness</td>
-            <td style="border: 1px solid black; padding: 5px;">-81.32</td>
+            <td style="border: 1px solid black; padding: 5px;">{!carbonScoreEffect}</td>
         </tr>
     </tbody>
                    

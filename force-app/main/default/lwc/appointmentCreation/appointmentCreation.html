@@ -1,0 +1,52 @@
+<template>
+    <template if:true={showAppointmentCreation}>
+    <lightning-card title="Create Prep Work Appointment">
+        <div class="slds-p-around_medium">
+            <!-- Picklist for Prep Work -->
+            <lightning-combobox
+                name="prepWork"
+                label="Select Prep Work"
+                value={ContractorTypes}
+                options={prepWorkOptions}
+                onchange={handlePrepWorkChange}
+            ></lightning-combobox>
+
+            <!--
+            <template if:true={showMsgPrepWork}>
+                <p class="msgPrepWork">Please Select "Asbestos" or "scaffolding" as prep work</p>
+            </template>
+            -->
+            
+            <!-- Date-Time Pickers -->
+            <lightning-input
+                type="datetime-local"
+                label="Scheduled Start Date Time"
+                value={scheduledStartDateTime}
+                onchange={handleStartDateTimeChange}
+            ></lightning-input>
+            <lightning-input
+                type="datetime-local"
+                label="Scheduled End Date Time"
+                value={scheduledEndDateTime}
+                onchange={handleEndDateTimeChange}
+            ></lightning-input>
+
+            <!-- Employee Data Table -->
+            <template if:true={showDatatable}>
+            <lightning-datatable
+                key-field="Id"
+                data={employees}
+                columns={columns}
+                onrowselection={handleEmployeeSelection}
+            ></lightning-datatable>
+            </template>
+            <!-- Submit Button -->
+            <lightning-button
+                variant="brand"
+                label="Create Appointment"
+                onclick={createAppointment}
+            ></lightning-button>
+        </div>
+    </lightning-card>
+    </template>
+</template>

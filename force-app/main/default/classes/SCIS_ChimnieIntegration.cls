@@ -23,16 +23,7 @@ Modification Description:	NO MODIFICATION YET. (PLEASE WRITE MODIFICATION IN BUL
 
 public class SCIS_ChimnieIntegration {
 
-    // Method to get residential address details
-   //@InvocableMethod(label='Chimeni data Pull' description='Store Chimnie Data on Lead')
-   /**
- * Asynchronously fetches residential address details from the Chimnie API and stores the data in a custom Salesforce object.
- * This method is designed to be called as a future method to perform callouts to an external service and process the response asynchronously.
- *
- * @param address The residential address to query in the Chimnie API.
- * @param fields The specific fields to request from the Chimnie API for the given address.
- * @param leadId The Salesforce ID of the lead associated with this address, used for linking the property data.
- */
+
    @Future(callout=true)
     public static void  /* ChimnieResponse */ getResidentialAddressDetails( String address, String fields, string leadId) {
 		string apiKey=system.label.chimnie_Api_Key;

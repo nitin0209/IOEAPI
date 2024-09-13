@@ -1,4 +1,4 @@
-public class VanManagementController {
+public class VanManagementControllerSCIS {
     @AuraEnabled(cacheable=true)
     public static List<Van_Assignment__c> getAssignedVans() {
         /*

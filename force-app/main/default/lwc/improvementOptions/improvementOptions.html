@@ -4,18 +4,20 @@
         <div class="slds-p-horizontal_small">
             <template for:each={improvementOptions} for:item="option">
                 <div key={option.name} class="improvement-item" style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div class="improvement-title" style="flex: 1; font-weight: normal; color: black;"> 
+                    <div class="improvement-title" style="flex: 1; font-weight: normal; color: black;">
                         {option.shortText} <!-- Display the shortText from each option -->
                     </div>
                     <div style="display: flex; gap: 10px;">
                         <lightning-input 
                             type="checkbox" 
                             label="Add to medium term plan"
-                            checked={option.isChecked}>
+                            checked={option.isChecked}
+                            >
                         </lightning-input>
                         <lightning-input 
                             type="checkbox" 
-                            label="Mark for installation">
+                            label="Mark for installation"
+                            checked={option.isMarkForInstallationChecked}> <!-- Bound to isMarkForInstallationChecked -->
                         </lightning-input>
                         <lightning-input 
                             type="checkbox" 

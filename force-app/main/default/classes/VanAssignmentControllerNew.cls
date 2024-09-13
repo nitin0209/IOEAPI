@@ -13,7 +13,8 @@ public class VanAssignmentControllerNew {
     public static String assignVan(String vanId, String installerId) {
         try {
             // Fetch the van record and ensure it's still available
-            Vehicle_Details__c selectedVan = [SELECT Id, Status__c FROM Vehicle_Details__c WHERE Id = :vanId LIMIT 1];
+            Vehicle_Details__c selectedVan = [SELECT Id,Name, Status__c FROM Vehicle_Details__c WHERE Id =: vanId LIMIT 1];
+            User_Log_In_Details__c selectedUserLoginDetail = [Select id,name from User_Log_In_Details__c where id =: installerId LIMIT 1];
             system.debug(selectedVan);
             if (selectedVan.Status__c == 'Assigned') {
                 throw new AuraHandledException('Van already assigned. Select another van or remove the assignment of this van and try again.');
@@ -21,8 +22,9 @@ public class VanAssignmentControllerNew {
 
             // Create a new van assignment record
             Van_Assignment__c vanAssignment = new Van_Assignment__c();
+            vanAssignment.Name = selectedUserLoginDetail.name;
             vanAssignment.Vehicle_Details__c = vanId;
-            vanAssignment.Installer__c = installerId;
+            vanAssignment.User_Log_In_Details__c = installerId;
             vanAssignment.Status__c = 'Active';
             insert vanAssignment;
 

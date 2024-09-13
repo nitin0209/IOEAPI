@@ -17,6 +17,12 @@ export default class ImprovementOptions extends LightningElement {
                 if (result) {
                     let responseJson = JSON.parse(result.Response_Body__c);
                     this.improvementOptions = responseJson.recommendations || [];
+
+                    // Ensure all "Mark for installation" checkboxes are checked by default
+                    this.improvementOptions = this.improvementOptions.map(option => {
+                        return { ...option, isMarkForInstallationChecked: true };
+                    });
+
                     console.log('Improvement Options:', this.improvementOptions);
                 } else {
                     console.error('No recommendations found in response');
@@ -26,6 +32,7 @@ export default class ImprovementOptions extends LightningElement {
                 console.error('Error fetching improvement options:', error);
             });
     }
+
     handleBackClick() {
         const hideImprovementOptionsEvent = new CustomEvent('hideimprovementoptions');
         this.dispatchEvent(hideImprovementOptionsEvent);

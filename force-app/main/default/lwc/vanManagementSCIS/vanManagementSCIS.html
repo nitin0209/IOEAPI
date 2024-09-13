@@ -1,10 +1,3 @@
-<!--
-  @description       : 
-  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
-  @group             : 
-  @last modified on  : 09-12-2024
-  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
--->
 <template>
     <lightning-card title="Manage Van Assignments">
         <!-- Assigned Vans Section -->
@@ -37,13 +30,13 @@
                                     <template for:each={assignedVans} for:item="van">
                                         <tr key={van.Id}>
                                             <td>
-                                                <div class="slds-truncate">{van.Vehicle_Details__r.Name}</div>
+                                                <div class="slds-truncate">{van.vehicleName}</div>
                                             </td>
                                             <td>
-                                                <div class="slds-truncate">{van.Vehicle_Details__r.Vehicle_Registration__c}</div>
+                                                <div class="slds-truncate">{van.vehicleRegistration}</div>
                                             </td>
                                             <td>
-                                                <div class="slds-truncate">{van.User_Log_In_Details__r.Name}</div>
+                                                <div class="slds-truncate">{van.assignedInstaller}</div>
                                             </td>
                                             <td>
                                                 <div class="slds-truncate">{van.Status__c}</div>
@@ -94,7 +87,7 @@
                                                 <div class="slds-truncate">{van.Name}</div>
                                             </td>
                                             <td>
-                                                <div class="slds-truncate">{van.License_Plate__c}</div>
+                                                <div class="slds-truncate">{van.Vehicle_Registration__c}</div>
                                             </td>
                                             <td>
                                                 <div class="slds-truncate">{van.Status__c}</div>

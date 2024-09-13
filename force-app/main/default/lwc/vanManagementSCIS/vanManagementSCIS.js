@@ -1,22 +1,27 @@
 import { LightningElement, wire, track } from 'lwc';
-import getAssignedVans from '@salesforce/apex/VanManagementController.getAssignedVans';
-import getUnassignedVans from '@salesforce/apex/VanManagementController.getUnassignedVans';
-import removeAssignment from '@salesforce/apex/VanManagementController.removeAssignment';
+import getAssignedVans from '@salesforce/apex/VanManagementControllerSCIS.getAssignedVans';
+import getUnassignedVans from '@salesforce/apex/VanManagementControllerSCIS.getUnassignedVans';
+import removeAssignment from '@salesforce/apex/VanManagementControllerSCIS.removeAssignment';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 
-export default class VanManagement extends LightningElement {
+export default class vanManagementSCIS extends LightningElement {
     @track assignedVans = [];
     @track unassignedVans = [];
     @track wiredAssignedVans;
     @track wiredUnassignedVans;
-
+ 
     @wire(getAssignedVans)
     wiredAssignedVansMethod(value) {
         this.wiredAssignedVans = value;
         const { data, error } = value;
         if (data) {
-            this.assignedVans = data;
+            this.assignedVans = data.map(van => ({
+                ...van,
+                vehicleName: van.Vehicle_Details__r ? van.Vehicle_Details__r.Name : 'N/A',
+                vehicleRegistration: van.Vehicle_Details__r ? van.Vehicle_Details__r.Vehicle_Registration__c : 'N/A',
+                assignedInstaller: van.User_Log_In_Details__r ? van.User_Log_In_Details__r.Name : 'N/A'
+            }));
         } else if (error) {
             this.showToast('Error', error.body.message, 'error');
         }

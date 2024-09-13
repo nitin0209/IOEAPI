@@ -1,9 +1,9 @@
 import { LightningElement, track, wire } from 'lwc';
-import { CurrentPageReference } from 'lightning/navigation'; // Import CurrentPageReference to get the current page context
+import { CurrentPageReference } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import fetchLatestResponse from '@salesforce/apex/IOEResponseController.fetchLatestResponse';
 import makeHttpPostRequest from '@salesforce/apex/scisIOEResponseHandler.makeHttpPostRequest';
-import savePackageData from '@salesforce/apex/scisIOEResponseHandler.savePackageData'; // Import the save method
+import savePackageData from '@salesforce/apex/scisIOEResponseHandler.savePackageData';
 
 export default class Optioneering extends LightningElement {
     @track responseBody;
@@ -12,16 +12,15 @@ export default class Optioneering extends LightningElement {
     @track totalFuelCosts;
     @track co2Emissions;
     @track spaceHeatingDemand;
-    @track recommendations = []; // Track recommendations
-    @track surveyId; // To hold the dynamic surveyId
+    @track recommendations = [];
+    @track surveyId;
 
-    // Use wire to get the current page reference and extract the recordId
+    // Extract the surveyId from the current page reference
     @wire(CurrentPageReference)
-getPageRef(pageRef) {
-    this.surveyId = pageRef?.attributes?.recordId; // Extract the recordId from attributes, not state
-    console.log('Current surveyId:', this.surveyId);
-}
-
+    getPageRef(pageRef) {
+        this.surveyId = pageRef?.attributes?.recordId; // Extract the recordId from attributes
+        console.log('Current surveyId:', this.surveyId);
+    }
 
     // Fetches the latest response from Salesforce and parses it
     handleFetch() {
@@ -57,22 +56,24 @@ getPageRef(pageRef) {
             })
             .catch(error => {
                 console.error('Error fetching response:', error);
-                this.responseBody = 'An error occurred while fetching the response.';
                 this.showToast('Error', 'An error occurred while fetching the response', 'error');
             });
     }
 
-    // Method to call the Apex makeHttpPostRequest method with toast messages and dynamic surveyId
+    // Make HTTP POST request to fetch the latest data from the external API
     handleMakeHttpPostRequest() {
         if (!this.surveyId) {
-        console.error('Survey ID not found. Ensure the recordId is present in the URL.');
-        this.showToast('Error', 'Survey ID not found', 'error');
-        return;
-    }
+            console.error('Survey ID not found. Ensure the recordId is present in the URL.');
+            this.showToast('Error', 'Survey ID not found', 'error');
+            return;
+        }
 
-        makeHttpPostRequest({ surveyId: this.surveyId }) // Pass the surveyId dynamically
+        makeHttpPostRequest({ surveyId: this.surveyId })
             .then(response => {
-                if (response) {
+                if (response === 'Elmhurst XML Base64 file not found for this survey.') {
+                    console.error('Elmhurst XML Base64 file not found.');
+                    this.showToast('Error', response, 'error');
+                } else {
                     console.log('HTTP POST request response:', response);
                     this.responseBody = response;
 
@@ -95,7 +96,7 @@ getPageRef(pageRef) {
             });
     }
 
-    // Method to save the recommendations data to Salesforce    
+    // Save the package data to Salesforce
     handleSavePackageData() {
         console.log('Package Data being saved:', this.recommendations);
 

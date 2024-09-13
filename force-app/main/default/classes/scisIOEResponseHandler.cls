@@ -31,7 +31,8 @@ public class scisIOEResponseHandler {
 
             // Check if we found the Elmhurst file
             if (contentVersions.isEmpty()) {
-                throw new AuraHandledException('Elmhurst XML Base64 file not found for this survey.');
+                // Return a message instead of throwing an exception if no Elmhurst file is found
+                return 'Elmhurst XML Base64 file not found for this survey.';
             }
 
             // Proceed with processing the file
@@ -104,7 +105,7 @@ public class scisIOEResponseHandler {
                 responseRecord.Result__C = result;
                 
                 // Assign the surveyId to the Survey__c lookup field
-                responseRecord.Survey__c = surveyId;  // <-- Map surveyId to the lookup field
+                responseRecord.Survey__c = surveyId;
 
                 try {
                     insert responseRecord;  
@@ -125,7 +126,6 @@ public class scisIOEResponseHandler {
             throw new AuraHandledException('Exception: ' + e.getMessage());
         }
     }
-
     
     @AuraEnabled
     public static void savePackageData(List<Map<String, Object>> recommendationData) {

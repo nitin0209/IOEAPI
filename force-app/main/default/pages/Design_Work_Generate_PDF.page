@@ -78,11 +78,19 @@
                     </tr>
                     <tr>
                         <td style="border: 1px solid black; padding: 6px;">Kitchen</td>
-                        <td style="border: 1px solid black; padding: 6px;">{!highRate}</td>
+                        <td style="border: 1px solid black; padding: 6px;">{!kitchenHighRate}</td>
                     </tr>
                     <tr>
                         <td style="border: 1px solid black; padding: 6px;">Bathroom</td>
-                        <td style="border: 1px solid black; padding: 6px;">{!highRate}</td>
+                        <td style="border: 1px solid black; padding: 6px;">{!bathroomHighRate}</td>
+                    </tr>
+                     <tr>
+                        <td style="border: 1px solid black; padding: 6px;">utility</td>
+                        <td style="border: 1px solid black; padding: 6px;">{!utilityHighRate}</td>
+                    </tr>
+                     <tr>
+                        <td style="border: 1px solid black; padding: 6px;">WC</td>
+                        <td style="border: 1px solid black; padding: 6px;">{!wcHighRate}</td>
                     </tr>
                 </table>
             </div>
@@ -137,31 +145,132 @@
                     </tr>
                     <tr>
                         <td style="border: 1px solid black; padding: 10px;">Kitchen Cooker Hood Extracts To Outside</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Kitchencookerhoodyes}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!kitchenCookerHoodExtractToOutsideLPS}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!kitchenCookerHoodExtractToOutsideAreaMM2}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Kitchen Cooker Hood Does Not Extracts To Outside</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!KitchencookerhoodNo}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!kitchenCookerHoodNotExtractOutsideLPS}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!kitchenCookerHoodNotExtractOutsideAreaMM2}</td>
                     </tr>
                     <tr>
                         <td style="border: 1px solid black; padding: 10px;">Bathroom</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Bathroom}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!bathroomExtractRateLPS}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!bathroomRequiredAreaMM2}</td>
                     </tr>
                     <tr>
                         <td style="border: 1px solid black; padding: 10px;">Bedrooms</td>
                         <td style="border: 1px solid black; padding: 10px;">{!Designwork.IEV_Number_of_Bedrooms__c}</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Designwork.IEV_Number_of_Bedrooms__c}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!bedroomExtractRateLPS}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!bedroomRequiredAreaMM2}</td>
                     </tr>
                     <tr>
                         <td style="border: 1px solid black; padding: 10px;">Lounge/Dining</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
-                        <td style="border: 1px solid black; padding: 10px;">-</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Diningroom}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Diningroom}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!diningExtractRateLPS}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!diningRequiredAreaMM2}</td>
+                    </tr>
+                       <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Air brick</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Airbrick}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                    </tr>
+                       <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Attic/loft</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Atticloft}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                    </tr>
+                      
+                     
+                       <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Closet</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Closet}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                    </tr>
+                       <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Garage</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Garage}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                    </tr>
+                      
+                       <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Hall</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Hall}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                    </tr>
+                     <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Living room</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Livingroom}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Livingroom}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                    </tr>
+                     <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Primary bedroom</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Primarybedroom}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Primarybedroom}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                    </tr>
+                     <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Stairway</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Stairway}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                    </tr>
+                     <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Study</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Study}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Study}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                    </tr>
+                     <tr>
+                        <td style="border: 1px solid black; padding: 10px;">WC</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Toilet}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!wcExtractRateLPS}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!wcRequiredAreaMM2}</td>
+                    </tr>
+                      <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Utility</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Utility}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!utilityExtractRateLPS}</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!utilityRequiredAreaMM2}</td>
+                    </tr>
+                      <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Kitchen</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!kitchen}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                    </tr>
+                     <tr>
+                        <td style="border: 1px solid black; padding: 10px;">Other</td>
+                        <td style="border: 1px solid black; padding: 10px;">{!Other}</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
+                        <td style="border: 1px solid black; padding: 10px;">0</td>
                     </tr>
                 </table>
             </div>
