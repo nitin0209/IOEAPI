@@ -1,0 +1,14 @@
+<apex:page controller="ElmhurstSurveyController">
+    <apex:form >
+        <apex:pageBlock title="Submit Survey with File Content">
+            <apex:commandButton value="Submit Survey" action="{!submitSurvey}" rerender="responseBlock"/>
+        </apex:pageBlock>
+
+        <apex:outputPanel id="responseBlock">
+            <apex:pageBlock title="Survey Submission Response">
+                <!-- Display response or error message -->
+                <apex:outputText value="{!responseData}" escape="false"/>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

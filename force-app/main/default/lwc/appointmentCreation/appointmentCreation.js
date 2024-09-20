@@ -143,14 +143,22 @@ export default class SurveyAppointmentForm extends LightningElement {
             startDateTime: this.scheduledStartDateTime,
             endDateTime: this.scheduledEndDateTime,
             surveyUserId: this.recordId,           // Corrected to use recordId
-            userDetailId: this.selectedEmployeeId
+            userDetailId: this.selectedEmployeeId,
+            //defineMeasures: 'Ventilation;CWI;LI'
         })
         .then(result => {
             this.showToast('Success', result, 'success'); // Show success message
             this.resetForm(); // Reset the form after successful creation
+            if (result.startsWith('error')) {
+                this.showToast('Error', result.replace('error: ', ''), 'error'); // Show error message if time conflict
+            } else {
+                this.showToast('Success', result, 'success'); // Show success message
+                this.resetForm(); // Reset the form after successful creation
+            }
         })
         .catch(error => {
             this.handleError(error, 'Already appointment is Created');
+            this.handleError(error, 'Error creating appointment');
         });
     }
 

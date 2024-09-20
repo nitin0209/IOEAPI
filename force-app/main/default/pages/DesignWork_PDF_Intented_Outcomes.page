@@ -22,7 +22,7 @@
             <div style="margin-left:">
                 <p><strong>Project reference:</strong>{!Designwork2.Project_Reference__c}</p>
                 <p><strong>Company name:</strong>{!Designwork2.Survey__r.company_Name__c}</p>
-                <p><strong>Number of dwellings:</strong>1</p>
+                <p><strong>Number of dwellings:</strong>-</p>
                 <p><strong>Number of improvements:</strong>-</p>
                 <p><strong>Overall risk grade:</strong>-</p>
             </div>
@@ -46,7 +46,9 @@
             <div style="margin-left:">
                 <p><strong>Dwelling type:</strong>{!Designwork2.Survey__r.House_Type__c}</p>
                 <p><strong>Conservation area:</strong>-</p>
-                <p><strong>World heritage site:</strong>{!Designwork2.Survey__r.Is_Listed__c}</p>
+                <p><strong>World heritage site:</strong>
+                        {!IF(Designwork2.Survey__r.Is_Listed__c, "Yes", "No")}
+                    </p>
                 <p><strong>Special architecture or historic interest:</strong>-</p>
                 <p><strong>Tenure:</strong>{!Designwork2.Survey__r.Tenure_Type__c}</p>
             </div>

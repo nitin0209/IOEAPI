@@ -12,25 +12,38 @@
                             type="checkbox" 
                             label="Add to medium term plan"
                             checked={option.isChecked}
-                            >
-                        </lightning-input>
+                        ></lightning-input>
                         <lightning-input 
                             type="checkbox" 
                             label="Mark for installation"
-                            checked={option.isMarkForInstallationChecked}> <!-- Bound to isMarkForInstallationChecked -->
-                        </lightning-input>
+                            checked={option.isMarkForInstallationChecked}
+                        ></lightning-input>
                         <lightning-input 
                             type="checkbox" 
-                            label="Add to package">
-                        </lightning-input>
-                        <lightning-icon icon-name="utility:chevronright" size="small" alternative-text="Right Arrow"></lightning-icon>
+                            label="Add to package"
+                            onchange={handleAddToPackage}
+                            value={option.name} 
+                        ></lightning-input>
+                        <lightning-icon 
+                            icon-name="utility:chevronright" 
+                            size="small" 
+                            alternative-text="Right Arrow"
+                            onclick={handleRightArrowClick}
+                            data-option-name={option.name} 
+                        ></lightning-icon>
                     </div>
                 </div>
             </template>
         </div>
+
+        <!-- Conditionally render the scisPackageDetails component when a package is selected -->
+        <template if:true={selectedPackageName}>
+            <c-scis-package-details package-name={selectedPackageName}></c-scis-package-details>
+        </template>
+
         <!-- Back to Optioneering button -->
-        <div style="text-align: right; padding: 10px;">
+        <!-- <div style="text-align: right; padding: 10px;">
             <lightning-button label="Back to Optioneering" onclick={handleBackClick} variant="neutral"></lightning-button>
-        </div>
+        </div> -->
     </lightning-card>
 </template>

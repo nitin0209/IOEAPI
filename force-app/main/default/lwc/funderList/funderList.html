@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="Funder List" class="custom-card">
+        <div class="slds-grid slds-p-horizontal_medium slds-p-vertical_small slds-border_bottom">
+            <div class="slds-col">
+                <p>{totalFunders} items • {selectionStatus}</p>
+            </div>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col">
+                        <div class="slds-truncate" title="Select"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Funder Name">Funder Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Type">Type</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={funders} for:item="funder">
+                    <tr key={funder.id}>
+                        <td>
+                            <input type="radio" name="funderSelect" value={funder.id} onclick={handleRadioChange}>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title={funder.funderName}>{funder.funderName}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title={funder.type}>{funder.type}</div>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <div class="slds-p-top_medium slds-float_right">
+            <lightning-button label="Save" class="slds-button_brand"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

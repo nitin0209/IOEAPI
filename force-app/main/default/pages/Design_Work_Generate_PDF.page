@@ -308,11 +308,11 @@
                         </tr>
                         <tr>
                             <th style="border: 1px solid black; padding: 10px;">In the case the ventilation is inadequate but no action is required: Confirm that you have delivered the recommendation to the client the ventilation is inadequate and should be upgraded</th>
-                            <td style="border: 1px solid black; padding: 10px;"> {!Designwork.D_requirements_for_combustion_appliances__c}</td>
+                            <td style="border: 1px solid black; padding: 10px;"> {!Designwork.D_ventilation_inadequate_no_action_req__c}</td>
                         </tr>
                         <tr>
                             <th style="border: 1px solid black; padding: 10px;">The supply air requirements for combustion appliances (Boiler, wood stove, fireplace, gas fire etc) are met, Part J of Building Regs, (Section 2, 3 and 4)</th>
-                            <td style="border: 1px solid black; padding: 10px;">{!Designwork.D_Confirm_ventilation_all_fans__c}</td>
+                            <td style="border: 1px solid black; padding: 10px;">{!Designwork.D_requirements_for_combustion_appliances__c}</td>
                         </tr>
                     </table>
                 </div>

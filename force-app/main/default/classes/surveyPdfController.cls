@@ -1,4 +1,4 @@
-public with sharing class surveyPdfController {
+public class surveyPdfController {
     @AuraEnabled(cacheable=true)
     public static Map<ID, String> getRelatedFilesByRecordId(String parentRecordId) {
         // Ensure the provided record ID is valid

@@ -1,11 +1,12 @@
 <template>
     <!-- Latest IOE Response card -->
     <lightning-card title="Latest IOE Response">
-        <div class="slds-p-around_medium">
-            <lightning-button label="Fetch Latest Response" onclick={handleFetch} variant="brand"></lightning-button>
-            <lightning-button label="Make HTTP Post Request" onclick={handleMakeHttpPostRequest} variant="brand"></lightning-button>
-        </div>
-    </lightning-card>
+    <div class="slds-p-around_medium">
+        <lightning-button label="View Latest Data" onclick={handleFetch} variant="brand" class="slds-m-right_small"></lightning-button>
+        <lightning-button label="Save Data" onclick={handleMakeHttpPostRequest} variant="brand"></lightning-button>
+    </div>
+</lightning-card>
+
 
     <!-- Improvement Optioneering card -->
     <lightning-card title="Improvement Optioneering" class="card-container">
@@ -57,7 +58,7 @@
         </div>
 
         <!-- Recommendations section -->
-        <template if:true={recommendations}>
+        <!-- <template if:true={recommendations}>
             <div class="slds-box slds-theme_default slds-m-top_medium">
                 <h2>Recommendations</h2>
                 <template for:each={recommendations} for:item="recommendation">
@@ -77,15 +78,15 @@
                     </div>
                 </template>
             </div>
-        </template>
+        </template> -->
 
         <!-- Optioneering section -->
-        <div onclick={handleOptioneeringClick} style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border: 1px solid #d8dde6; border-radius: 5px; margin-top: 20px; cursor: pointer;">
+        <!-- <div onclick={handleOptioneeringClick} style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border: 1px solid #d8dde6; border-radius: 5px; margin-top: 20px; cursor: pointer;">
             <span>Optioneering</span>
             <lightning-icon icon-name="utility:chevronright" size="small" alternative-text="Right Arrow"></lightning-icon>
-        </div>
+        </div> -->
 
         <!-- Save Package Data Button -->
-        <lightning-button label="Save Package Data" onclick={handleSavePackageData} variant="brand" class="slds-m-top_medium"></lightning-button>
+        <!-- <lightning-button label="Save Package Data" onclick={handleSavePackageData} variant="brand" class="slds-m-top_medium"></lightning-button> -->
     </lightning-card>
 </template>

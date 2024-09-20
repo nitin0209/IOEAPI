@@ -26,13 +26,13 @@
             </div>
             <div style="margin-left:">
                 <p><strong>Current SAP rating:</strong> {!currentSapRating}</p>
-                <p><strong>Current environmental impact rating:</strong> 67</p>
-                <p><strong>Current fuel cost:</strong> 907</p>
-                <p><strong>Current total delivered energy:</strong> 12094</p>
-                <p><strong>Current total fuel costs:</strong> 907</p>
-                <p><strong>Current CO2 emissions:</strong> {!sapCO2Emissions}</p>
-                <p><strong>Current energy rating:</strong> 68</p>
-                <p><strong>Current space heating demand:</strong> {!spaceHeatingDemand}</p>
+                <p><strong>Current environmental impact rating:</strong> {!eiRating}</p>
+                <p><strong>Current fuel cost:</strong>0</p>
+                <p><strong>Current total delivered energy:</strong> {!currentTotalDeliveredEnergy}</p>
+                <p><strong>Current total fuel costs:</strong> {!currentTotalFuelCosts}</p>
+                <p><strong>Current CO2 emissions:</strong> {!currentCO2Emissions}</p>
+                <p><strong>Current energy rating:</strong>{!currentEnergyRating}</p>
+                <p><strong>Current space heating demand:</strong>{!currentSpaceHeatingDemand}</p>
             </div>
         </div>
 
@@ -59,7 +59,7 @@
                     <tbody>
                         <tr>
                             <td style="border: 1px solid black; padding: 5px;">Cavity wall insulation</td>
-                            <td style="border: 1px solid black; padding: 5px;">71</td>
+                            <td style="border: 1px solid black; padding: 5px;">{!SapRatingvalue}</td>
                             <td style="border: 1px solid black; padding: 5px;">{!capitalCost}</td>
                             <td style="border: 1px solid black; padding: 5px;">{!annualFuelSavings}</td>
                             <td style="border: 1px solid black; padding: 5px;">{!simplepayback}</td>
@@ -87,7 +87,7 @@
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 5px;">SAP rating</td>
-            <td style="border: 1px solid black; padding: 5px;">71</td>
+            <td style="border: 1px solid black; padding: 5px;">{!SapRatingvalue}</td>
         </tr>
         <tr>
             <td style="border: 1px solid black; padding: 5px;">Capital cost</td>
@@ -127,7 +127,7 @@
     <tr>
         <td style="border: 1px solid black; padding: 10px;">Elmhurst Energy Systems RdSAP Calculator</td>
         <td style="border: 1px solid black; padding: 10px;">4.13r0001</td>
-        <td style="border: 1px solid black; padding: 10px;">-</td>
+        <td style="border: 1px solid black; padding: 10px;">{!RRN}</td>
     </tr>
    
 </table>

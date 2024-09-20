@@ -1,0 +1,23 @@
+.custom-card {
+    border: 1px solid #d8dde6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.slds-table th, .slds-table td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.slds-table th {
+    background-color: #f3f4f6;
+}
+
+.slds-button_brand {
+    background-color: #0070d2;
+    border-radius: 4px;
+}
+
+.slds-p-top_medium {
+    padding-top: 15px;
+}

@@ -1,7 +1,8 @@
 <apex:page controller="PdfGenerationForDesignWorkMediumTermPlan">
     <apex:form >
         <apex:commandButton value="Click to generate Medium Term Plan pdf" action="{!generatePDFAndSave}">
-            <apex:param name="DesignworkId" value="{!$CurrentPage.parameters.id}" assignTo="{!Designwork.Id}"/>
+            <!-- Pass the SurveyId instead of DesignworkId -->
+            <apex:param name="surveyId" value="{!$CurrentPage.parameters.id}" assignTo="{!SurveyId}"/>
         </apex:commandButton>
     </apex:form>
 </apex:page>

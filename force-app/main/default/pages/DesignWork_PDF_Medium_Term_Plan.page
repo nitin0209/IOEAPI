@@ -10,9 +10,9 @@
         <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
             <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;color: dark teal;text-align='center'">Medium Term Plan</div>
             <div style="margin-left:">
-                <p><strong>Date:</strong> 07/06/2024</p>
-                <p><strong>Address:</strong> 42 Marlborough Drive, , BS226DQ, Avon, England</p>
-                <p><strong>Project reference:</strong> PAS-6789</p>
+                <p><strong>Date:</strong>   {!Designwork1.Date__c}</p>
+                <p><strong>Address:</strong> {!Address}</p>
+                <p><strong>Project reference:</strong>  {!Designwork1.Project_Reference__c}</p>
                 <p>The purpose of this plan is to guide the staged or phased improvement of the dwelling to which it applies by identifying the improvements that are needed by 2050 in order to achieve energy efficiency and sustainability (i.e. net zero carbon), and an appropriate order for their implementation, and by highlighting critical interactions between them.</p>
             </div>
         </div>
@@ -21,11 +21,11 @@
         <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
             <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Project Details</div>
             <div style="margin-left:">
-                <p><strong>Project reference:</strong> PAS-6789</p>
-                <p><strong>Company name:</strong> South Coast Insulation Services Limited</p>
-                <p><strong>Number of dwellings:</strong> 1</p>
-                <p><strong>Number of improvements:</strong> 1</p>
-                <p><strong>Overall risk grade:</strong> A</p>
+                <p><strong>Project reference:</strong> {!Designwork1.Project_Reference__c}</p>
+                <p><strong>Company name:</strong> {!Designwork1.Survey__r.company_Name__c}</p>
+                <p><strong>Number of dwellings:</strong>-</p>
+                <p><strong>Number of improvements:</strong>-</p>
+                <p><strong>Overall risk grade:</strong> -</p>
             </div>
         </div>
 
@@ -33,10 +33,10 @@
         <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
             <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Retrofit Roles</div>
             <div style="margin-left:">
-                <p><strong>Co-ordinator:</strong> Mr Antony Gillanders (2725426)</p>
+                <p><strong>Co-ordinator:</strong>  {!Designwork1.Survey__r.Assigned_Coordinator__c}</p>
                 <p><strong>Advisor:</strong> -</p>
-                <p><strong>Assessor:</strong> Nicholas Kurkov (2710251)</p>
-                <p><strong>Designer:</strong> Antony Gillanders (2725426)</p>
+                <p><strong>Assessor:</strong> -</p>
+                <p><strong>Designer:</strong> {!Designwork1.Survey__r.Assigned_Coordinator__c}</p>
                 <p><strong>Evaluator:</strong> -</p>
             </div>
         </div>
@@ -45,10 +45,12 @@
         <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
             <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Dwelling Details</div>
             <div style="margin-left:">
-                <p><strong>Dwelling type:</strong> Mid-terrace</p>
-                <p><strong>Conservation area:</strong> No</p>
-                <p><strong>World heritage site:</strong> No</p>
-                <p><strong>Special architecture or historic interest:</strong> No</p>
+                <p><strong>Dwelling type:</strong>{!Designwork1.Survey__r.House_Type__c}</p>
+                <p><strong>Conservation area:</strong> -</p>
+                    <p><strong>World heritage site:</strong>
+                        {!IF(Designwork1.Survey__r.Is_Listed__c, "Yes", "No")}
+                    </p>
+                <p><strong>Special architecture or historic interest:</strong> -</p>
             </div>
         </div>
         
@@ -71,11 +73,11 @@
         <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
             <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Constraints on Improvements</div>
             <div style="margin-left:">
-                <p><strong>Constraints imposed by the history, architectural character or setting of the building:</strong> No</p>
-                <p><strong>Constraints imposed by the location of the building:</strong> No</p>
-                <p><strong>Constraints imposed by local planning:</strong> No</p>
-                <p><strong>Defects requiring repair prior to installation of improvement measures:</strong> No</p>
-                <p><strong>Other defects requiring attention in due course (not necessarily before retrofit):</strong> No</p>
+                <p><strong>Constraints imposed by the history, architectural character or setting of the building:</strong> {!Designwork1.PC_Constraints_imposed_by_history__c}</p>
+                <p><strong>Constraints imposed by the location of the building:</strong> {!Designwork1.PC_Constraints_imposed_by_the_location__c}</p>
+                <p><strong>Constraints imposed by local planning:</strong> {!Designwork1.PC_Constraints_imposed_by_local_planning__c}</p>
+                <p><strong>Defects requiring repair prior to installation of improvement measures:</strong> {!Designwork1.PC_Defects_requiring_repair__c}</p>
+                <p><strong>Other defects requiring attention in due course (not necessarily before retrofit):</strong> {!Designwork1.PC_Other_defects_requiring_attention__c}</p>
             </div>
         </div>
 
@@ -99,13 +101,13 @@
                     <tbody>
                         <tr>
                             <td style="border: 1px solid black; padding: 10px;">1</td>
-                            <td style="border: 1px solid black; padding: 10px;">Cavity wall insulation</td>
+                            <td style="border: 1px solid black; padding: 10px;">{!measureValue}</td>
                             <td style="border: 1px solid black; padding: 10px;">1,500.00</td>
-                            <td style="border: 1px solid black; padding: 10px;">157.00</td>
-                            <td style="border: 1px solid black; padding: 10px;">9.55</td>
-                            <td style="border: 1px solid black; padding: 10px;">6,594.00</td>
-                            <td style="border: 1px solid black; padding: 10px;">62.64</td>
-                            <td style="border: 1px solid black; padding: 10px;">-81.318</td>
+                            <td style="border: 1px solid black; padding: 10px;">{!annualFuelSavings}</td>
+                            <td style="border: 1px solid black; padding: 10px;">{!simplepayback}</td>
+                            <td style="border: 1px solid black; padding: 10px;">{!lifetimeFuelSavings}</td>
+                            <td style="border: 1px solid black; padding: 10px;">{!lifetimeCO2Savings}</td>
+                            <td style="border: 1px solid black; padding: 10px;">{!carbonScoreEffect}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -137,7 +139,7 @@
                             <td style="border: 1px solid black; padding: 10px;">Measures are not appropriate together or should not be combined</td>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid black; padding: 10px;">Cavity wall insulation</td>
+                            <td style="border: 1px solid black; padding: 10px;">{!measureValue}</td>
                             <td style="border: 1px solid black; padding: 10px;">0</td>
                         </tr>
                     </tbody>
@@ -158,21 +160,21 @@
             <div style="font-size: 1.5em; margin-bottom: 10px; font-weight: bold;">Retrofit Co-ordinator Declarations</div>
             <div style="margin-left:">
                 <ul style="list-style-type: disc; margin-left: 20px;">
-                    <li>I confirm I accept the evidence provided by the Retrofit Assessor:       Yes</li>
+                    <li>I confirm I accept the evidence provided by the Retrofit Assessor:       {!Designwork1.D_I_accept_the_evidence__c}</li>
                     
-                    <li>I confirm that the ventilation fan has a maximum noise level 30 dBLAeq,T for IEV or 30dBLAeq,T for background mode for continuous systems:       Yes</li>
+                    <li>I confirm that the ventilation fan has a maximum noise level 30 dBLAeq,T for IEV or 30dBLAeq,T for background mode for continuous systems:      {!Designwork1.D_Confirm_ventilation_max_noise_level_30__c}</li>
                     
-                    <li>I confirm that ventilation system sized to provide a whole-dwelling background ventilation rate equivalent to at least the 'Minimum low rate' of whole-dwelling ventilation specified in Approved Document F, assuming occupancy equal to the number of bed spaces in the dwelling:          Yes</li>
+                    <li>I confirm that ventilation system sized to provide a whole-dwelling background ventilation rate equivalent to at least the 'Minimum low rate' of whole-dwelling ventilation specified in Approved Document F, assuming occupancy equal to the number of bed spaces in the dwelling:          {!Designwork1.D_Confirm_that_ventilation_system_sized__c}</li>
                     
-                    <li>I confirm that ventilation all fans specified as part of any of the ventilation systems described shall be an energy efficient model compliant with ECO Design Commission Regulations (EU) 1253/2014:           Yes</li>
+                    <li>I confirm that ventilation all fans specified as part of any of the ventilation systems described shall be an energy efficient model compliant with ECO Design Commission Regulations (EU) 1253/2014:           {!Designwork1.D_Confirm_ventilation_all_fans__c}</li>
                     
-                    <li>I confirm that ventilation system design includes calculations provided by a technical consultant, specialist designer or the supplier of the system, to demonstrate the whole-dwelling ventilation rates are provided by the equipment proposed:           Yes</li>
+                    <li>I confirm that ventilation system design includes calculations provided by a technical consultant, specialist designer or the supplier of the system, to demonstrate the whole-dwelling ventilation rates are provided by the equipment proposed:           {!Designwork1.D_Confirm_design_includes_calculations__c}</li>
                     
-                    <li>I confirm that ventilation system was installed by operatives holding suitable qualifications identified in the Register of Regulated Qualifications maintained by Ofqual for England (and by its equivalents for the devolved nations) and approved by the manufacturer or supplier of the system:         Yes</li>
+                    <li>I confirm that ventilation system was installed by operatives holding suitable qualifications identified in the Register of Regulated Qualifications maintained by Ofqual for England (and by its equivalents for the devolved nations) and approved by the manufacturer or supplier of the system:         {!Designwork1.D_Confirm_that_ventilation_system_instle__c}</li>
                     
-                    <li>In the case the ventilation is inadequate but no action is required: Confirm that you have delivered the recommendation to the client the ventilation is inadequate and should be upgraded:            Yes</li>
+                    <li>In the case the ventilation is inadequate but no action is required: Confirm that you have delivered the recommendation to the client the ventilation is inadequate and should be upgraded:             {!Designwork1.D_ventilation_inadequate_no_action_req__c}</li>
                     
-                    <li>The supply air requirements for combustion appliances (Boiler, wood stove, fireplace, gas fire etc) are met, Part J of Building Regs, (Section 2, 3 and 4):            Yes</li>
+                    <li>The supply air requirements for combustion appliances (Boiler, wood stove, fireplace, gas fire etc) are met, Part J of Building Regs, (Section 2, 3 and 4):           {!Designwork1.D_requirements_for_combustion_appliances__c}</li>
                 </ul>
             </div>
         </div>
